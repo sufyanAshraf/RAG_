@@ -14,10 +14,18 @@ class dataBase:
     def __init__(self, key):
         # if not hasattr(self, "index"):
         #     self.index = None
-        self.key = key
-        self.pc = Pinecone(api_key=self.key)
 
-        logger.info("Successfully initilize")
+        if not key:
+            raise ValueError("API key is required for Pinecone.")
+        self.key = key
+
+        try:
+            self.pc = Pinecone(api_key=self.key)
+        except Exception as e:
+            logger.error(f"Error initializing pinecone: {e}")
+            raise Exception(f"Failed to initialize pinecone: {e}")
+        
+        logger.info("Pinecone Successfully initilize")
 
     def create_index(self, index_name):
         index_flag = False

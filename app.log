@@ -59,3 +59,20 @@
 2026-09-10 20:55:28,787 INFO root Successfull response
 2026-09-10 20:55:28,787 INFO httpx2 HTTP Request: POST http://testserver/ "HTTP/1.1 200 OK"
 2026-09-10 20:55:28,792 INFO root Successfull query database
+2026-09-10 21:03:54,348 INFO root Successfull query database
+2026-09-10 21:03:54,349 INFO root Successfull response
+2026-09-10 21:03:54,350 INFO httpx2 HTTP Request: POST http://testserver/ "HTTP/1.1 200 OK"
+2026-09-10 21:03:54,356 INFO root Successfull query database
+2026-09-10 21:04:36,491 INFO root Successfull query database
+2026-09-10 21:04:36,492 INFO root Successfull response
+2026-09-10 21:04:36,493 INFO httpx2 HTTP Request: POST http://testserver/ "HTTP/1.1 200 OK"
+2026-09-10 21:04:36,500 INFO root Successfull query database
+2026-09-10 21:04:40,117 ERROR root Error occurred: Full prompt is required.
+2026-09-10 21:04:40,120 ERROR root Error occurred while invoking the model: Model interaction failed
+2026-09-10 21:17:57,205 INFO root Pinecone Successfully initilize
+2026-09-10 21:19:45,600 INFO root Pinecone Successfully initilize
+2026-09-10 21:22:51,446 INFO root Pinecone Successfully initilize
+2026-09-10 21:23:55,043 INFO root Pinecone Successfully initilize
+2026-09-10 21:25:00,137 INFO root Pinecone Successfully initilize
+2026-09-10 21:28:54,838 INFO root Pinecone Successfully initilize
+2026-09-10 21:29:33,170 INFO root Pinecone Successfully initilize
