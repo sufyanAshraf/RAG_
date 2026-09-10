@@ -6,7 +6,7 @@ from .models import GroqModel
 from .readData import readData
 from .embeddingsCreator import create_embeddings
 from .dataBase import dataBase
-from .queryModel import pc_search 
+from .query_DB import pc_search 
 from .prompt import getPrompt
 
 def read_api_key_from_config() -> str:
