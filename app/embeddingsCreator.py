@@ -1,14 +1,12 @@
 
-def create_embeddings(data, pc, index_name, namespace ):
+def create_embeddings(data, index, namespace ):
     """
     Create embeddings for a list of texts using the specified model.
 
     Args:
         texts (list): A list of strings to create embeddings for.
         model (str): The name of the embedding model to use."""
-
-    index = pc.Index(index_name)
-
+ 
     records = []
     cat = ["spa", "hotel", "restaurant"]
     count = 1

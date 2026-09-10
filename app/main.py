@@ -38,15 +38,14 @@ async def chat(request: chatRequest) -> chatResponse:
     namespace = "hotels" 
     db = dataBase(pinecone_api_key)
     pc, index_flag = db.create_index(index_name)
+    index = pc.Index(index_name)
 
     if index_flag == False:
         read_data = readData()
         data = read_data.readjson()
     
         # Create embeddings for the data
-        index = create_embeddings(data, pc, index_name, namespace )
-    else:
-        index = pc.Index(index_name)
+        index = create_embeddings(data, index, namespace )
 
     # query model
     query = request.query
