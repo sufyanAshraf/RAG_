@@ -1,0 +1,167 @@
+[
+    {
+        "name": "Spice Garden",
+        "services": [
+            "Biryani",
+            "Chicken Karahi",
+            "Chicken Tikka",
+            "Naan",
+            "Raita"
+        ],
+        "rating": 8.6,
+        "distance": "2.1km",
+        "city": "Helsinki",
+        "region": "Uusimaa",
+        "description": "A Pakistani restaurant serving traditional biryani, karahi, grilled chicken and fresh naan."
+    },
+    {
+        "name": "Urban Bites",
+        "services": [
+            "Burgers",
+            "Pizza",
+            "French Fries",
+            "Chicken Wings",
+            "Biryani",
+            "Pasta"
+        ],
+        "rating": 9.1,
+        "distance": "4.3km",
+        "city": "Helsinki",
+        "region": "Uusimaa",
+        "description": "A casual restaurant offering burgers, pizza, pasta, chicken wings and popular fast food."
+    },
+    {
+        "name": "Royal Taste",
+        "services": [
+            "Chicken Karahi",
+            "Mutton Karahi",
+            "Biryani",
+            "Seekh Kebab",
+            "Naan",
+            "Kheer"
+        ],
+        "rating": 8.8,
+        "distance": "6.7km",
+        "city": "Espoo",
+        "region": "Uusimaa",
+        "description": "A traditional South Asian restaurant specializing in karahi, kebabs, biryani and Pakistani desserts."
+    },
+    {
+        "name": "Food Junction",
+        "services": [
+            "Burgers",
+            "Pizza",
+            "French Fries",
+            "Chicken Wings",
+            "Pasta",
+            "Sandwiches",
+            "Shawarma"
+        ],
+        "rating": 7.9,
+        "distance": "1.8km",
+        "city": "Helsinki",
+        "region": "Uusimaa",
+        "description": "A fast-food restaurant serving burgers, pizza, shawarma, sandwiches, pasta and crispy chicken."
+    },
+    {
+        "name": "The Food House",
+        "services": [
+            "Biryani",
+            "Chicken Tikka",
+            "Chicken Karahi",
+            "Naan",
+            "Seekh Kebab",
+            "Gulab Jamun"
+        ],
+        "rating": 9.3,
+        "distance": "8.2km",
+        "city": "Vantaa",
+        "region": "Uusimaa",
+        "description": "A family-style South Asian restaurant serving biryani, tikka, karahi, kebabs and traditional sweets."
+    },
+    {
+        "name": "Café Delight",
+        "services": [
+            "Pizza",
+            "Pasta",
+            "Sandwiches",
+            "French Fries",
+            "Chocolate Cake",
+            "Coffee"
+        ],
+        "rating": 8.2,
+        "distance": "3.5km",
+        "city": "Helsinki",
+        "region": "Uusimaa",
+        "description": "A cozy cafe offering coffee, cakes, pasta, pizza, sandwiches and light meals."
+    },
+    {
+        "name": "Taste Hub",
+        "services": [
+            "Biryani",
+            "Chicken Karahi",
+            "Burgers",
+            "Pizza",
+            "Chicken Tikka",
+            "French Fries",
+            "Naan"
+        ],
+        "rating": 8.9,
+        "distance": "5.4km",
+        "city": "Espoo",
+        "region": "Uusimaa",
+        "description": "A diverse restaurant combining South Asian dishes with popular burgers, pizza and fast-food options."
+    },
+    {
+        "name": "Flavors Restaurant",
+        "services": [
+            "Mutton Karahi",
+            "Chicken Karahi",
+            "Biryani",
+            "Seekh Kebab",
+            "Chicken Tikka",
+            "Naan",
+            "Haleem",
+            "Kheer"
+        ],
+        "rating": 9.5,
+        "distance": "10.6km",
+        "city": "Helsinki",
+        "region": "Uusimaa",
+        "description": "An authentic Pakistani restaurant known for karahi, biryani, kebabs, haleem and traditional desserts."
+    },
+    {
+        "name": "Quick Feast",
+        "services": [
+            "Burgers",
+            "Shawarma",
+            "Pizza",
+            "French Fries",
+            "Chicken Wings"
+        ],
+        "rating": 7.7,
+        "distance": "2.9km",
+        "city": "Vantaa",
+        "region": "Uusimaa",
+        "description": "A quick-service restaurant offering burgers, shawarma, pizza, fries and chicken wings."
+    },
+    {
+        "name": "Grand Table",
+        "services": [
+            "Biryani",
+            "Chicken Karahi",
+            "Mutton Karahi",
+            "Chicken Tikka",
+            "Seekh Kebab",
+            "Naan",
+            "Haleem",
+            "Gulab Jamun",
+            "Kheer"
+        ],
+        "rating": 9.7,
+        "distance": "12.4km",
+        "city": "Espoo",
+        "region": "Uusimaa",
+        "description": "A premium Pakistani restaurant offering a wide selection of traditional dishes, grilled meats and desserts."
+    }
+]

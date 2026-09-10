@@ -1,0 +1,165 @@
+[
+    {
+        "name": "Grand Palace Hotel",
+        "services": [
+            "Free WiFi",
+            "Swimming Pool",
+            "Gym",
+            "Restaurant",
+            "Parking"
+        ],
+        "rating": 9.2,
+        "distance": "3.2km",
+        "city": "Helsinki",
+        "region": "Uusimaa",
+        "description": "A modern hotel offering comfortable rooms, free WiFi, a swimming pool, gym, restaurant and convenient parking."
+    },
+    {
+        "name": "City View Hotel",
+        "services": [
+            "Free WiFi",
+            "Restaurant",
+            "Room Service",
+            "Parking",
+            "Airport Shuttle",
+            "Gym"
+        ],
+        "rating": 8.5,
+        "distance": "5.7km",
+        "city": "Helsinki",
+        "region": "Uusimaa",
+        "description": "A city hotel providing comfortable accommodation with restaurant, room service, gym and airport transportation."
+    },
+    {
+        "name": "Royal Inn",
+        "services": [
+            "Free WiFi",
+            "Swimming Pool",
+            "Restaurant",
+            "Room Service",
+            "Spa"
+        ],
+        "rating": 9.0,
+        "distance": "7.4km",
+        "city": "Espoo",
+        "region": "Uusimaa",
+        "description": "A relaxing hotel featuring a swimming pool, spa, restaurant, room service and complimentary WiFi."
+    },
+    {
+        "name": "Comfort Stay",
+        "services": [
+            "Free WiFi",
+            "Parking",
+            "Room Service",
+            "Restaurant",
+            "Breakfast",
+            "Airport Shuttle",
+            "Gym"
+        ],
+        "rating": 8.1,
+        "distance": "2.6km",
+        "city": "Vantaa",
+        "region": "Uusimaa",
+        "description": "A convenient hotel offering breakfast, room service, free WiFi, gym facilities, parking and airport shuttle service."
+    },
+    {
+        "name": "Luxury Heights",
+        "services": [
+            "Free WiFi",
+            "Swimming Pool",
+            "Gym",
+            "Spa",
+            "Restaurant",
+            "Room Service",
+            "Parking",
+            "Breakfast"
+        ],
+        "rating": 9.6,
+        "distance": "11.2km",
+        "city": "Helsinki",
+        "region": "Uusimaa",
+        "description": "A luxury hotel with premium rooms, swimming pool, spa, gym, restaurant, breakfast and professional room service."
+    },
+    {
+        "name": "Green Garden Hotel",
+        "services": [
+            "Free WiFi",
+            "Parking",
+            "Restaurant",
+            "Breakfast",
+            "Garden"
+        ],
+        "rating": 8.4,
+        "distance": "4.1km",
+        "city": "Espoo",
+        "region": "Uusimaa",
+        "description": "A peaceful hotel surrounded by garden areas, offering comfortable rooms, breakfast, restaurant and free WiFi."
+    },
+    {
+        "name": "Metro Hotel",
+        "services": [
+            "Free WiFi",
+            "Restaurant",
+            "Parking",
+            "Room Service",
+            "Airport Shuttle",
+            "Breakfast"
+        ],
+        "rating": 8.7,
+        "distance": "1.9km",
+        "city": "Helsinki",
+        "region": "Uusimaa",
+        "description": "A conveniently located hotel offering breakfast, restaurant dining, room service, parking and airport shuttle facilities."
+    },
+    {
+        "name": "Royal Suites",
+        "services": [
+            "Free WiFi",
+            "Swimming Pool",
+            "Spa",
+            "Gym",
+            "Restaurant",
+            "Private Dining",
+            "Room Service"
+        ],
+        "rating": 9.4,
+        "distance": "9.3km",
+        "city": "Vantaa",
+        "region": "Uusimaa",
+        "description": "An upscale hotel offering luxury suites, swimming pool, spa, gym, private dining and premium room service."
+    },
+    {
+        "name": "Budget Stay",
+        "services": [
+            "Free WiFi",
+            "Parking",
+            "Breakfast",
+            "Room Service",
+            "Restaurant"
+        ],
+        "rating": 7.8,
+        "distance": "3.7km",
+        "city": "Vantaa",
+        "region": "Uusimaa",
+        "description": "An affordable hotel providing essential accommodation with free WiFi, breakfast, restaurant, parking and room service."
+    },
+    {
+        "name": "Elite Residency",
+        "services": [
+            "Free WiFi",
+            "Swimming Pool",
+            "Gym",
+            "Spa",
+            "Restaurant",
+            "Room Service",
+            "Parking",
+            "Breakfast",
+            "Airport Shuttle"
+        ],
+        "rating": 9.8,
+        "distance": "13.1km",
+        "city": "Helsinki",
+        "region": "Uusimaa",
+        "description": "A premium hotel offering extensive facilities including a swimming pool, spa, gym, restaurant, breakfast and airport shuttle."
+    }
+]

@@ -1,0 +1,164 @@
+[
+    {
+        "name": "Serenity Spa",
+        "services": [
+            "Thai Massage",
+            "Swedish Massage",
+            "Deep Tissue Massage",
+            "Hot Stone Massage",
+            "Aromatherapy"
+        ],
+        "rating": 8.7,
+        "distance": "2.4km",
+        "city": "Helsinki",
+        "region": "Uusimaa",
+        "description": "A relaxing spa offering Thai, Swedish, deep tissue and hot stone massage treatments."
+    },
+    {
+        "name": "Relaxation Haven",
+        "services": [
+            "Swedish Massage",
+            "Deep Tissue Massage",
+            "Aromatherapy",
+            "Couples Massage",
+            "Foot Massage",
+            "Head Massage"
+        ],
+        "rating": 9.1,
+        "distance": "4.8km",
+        "city": "Espoo",
+        "region": "Uusimaa",
+        "description": "A wellness center specializing in relaxing Swedish massage, aromatherapy and couples treatments."
+    },
+    {
+        "name": "Healing Hands Spa",
+        "services": [
+            "Thai Massage",
+            "Deep Tissue Massage",
+            "Sports Massage",
+            "Foot Massage",
+            "Head Massage"
+        ],
+        "rating": 7.9,
+        "distance": "1.7km",
+        "city": "Helsinki",
+        "region": "Uusimaa",
+        "description": "A massage center providing therapeutic treatments for muscle recovery, relaxation and sports-related tension."
+    },
+    {
+        "name": "Golden Touch Wellness",
+        "services": [
+            "Swedish Massage",
+            "Hot Stone Massage",
+            "Aromatherapy",
+            "Facial Massage",
+            "Foot Massage",
+            "Couples Massage",
+            "Head Massage"
+        ],
+        "rating": 8.4,
+        "distance": "6.2km",
+        "city": "Vantaa",
+        "region": "Uusimaa",
+        "description": "A wellness spa offering a variety of relaxing treatments including hot stone, aromatherapy and facial massage."
+    },
+    {
+        "name": "Tranquil Body Spa",
+        "services": [
+            "Thai Massage",
+            "Swedish Massage",
+            "Deep Tissue Massage",
+            "Sports Massage",
+            "Hot Stone Massage",
+            "Aromatherapy"
+        ],
+        "rating": 9.3,
+        "distance": "8.5km",
+        "city": "Helsinki",
+        "region": "Uusimaa",
+        "description": "A premium spa offering therapeutic and relaxation massages with experienced therapists."
+    },
+    {
+        "name": "Urban Relax Spa",
+        "services": [
+            "Deep Tissue Massage",
+            "Sports Massage",
+            "Foot Massage",
+            "Head Massage",
+            "Facial Massage"
+        ],
+        "rating": 7.6,
+        "distance": "3.1km",
+        "city": "Espoo",
+        "region": "Uusimaa",
+        "description": "An urban wellness center focused on deep tissue, sports recovery and targeted head and foot treatments."
+    },
+    {
+        "name": "Bliss Wellness Center",
+        "services": [
+            "Thai Massage",
+            "Swedish Massage",
+            "Aromatherapy",
+            "Hot Stone Massage",
+            "Couples Massage",
+            "Facial Massage"
+        ],
+        "rating": 8.9,
+        "distance": "5.6km",
+        "city": "Helsinki",
+        "region": "Uusimaa",
+        "description": "A peaceful wellness center providing Thai and Swedish massage along with aromatherapy and couples treatments."
+    },
+    {
+        "name": "Pure Relaxation",
+        "services": [
+            "Swedish Massage",
+            "Deep Tissue Massage",
+            "Sports Massage",
+            "Foot Massage",
+            "Aromatherapy",
+            "Head Massage",
+            "Hot Stone Massage",
+            "Couples Massage"
+        ],
+        "rating": 9.5,
+        "distance": "10.3km",
+        "city": "Vantaa",
+        "region": "Uusimaa",
+        "description": "A highly rated spa with an extensive range of massage treatments for relaxation, recovery and couples."
+    },
+    {
+        "name": "Nature Spa",
+        "services": [
+            "Thai Massage",
+            "Aromatherapy",
+            "Foot Massage",
+            "Facial Massage",
+            "Head Massage"
+        ],
+        "rating": 8.1,
+        "distance": "7.4km",
+        "city": "Espoo",
+        "region": "Uusimaa",
+        "description": "A calming wellness spa offering natural relaxation treatments including Thai massage and aromatherapy."
+    },
+    {
+        "name": "Royal Wellness Spa",
+        "services": [
+            "Thai Massage",
+            "Swedish Massage",
+            "Deep Tissue Massage",
+            "Hot Stone Massage",
+            "Sports Massage",
+            "Aromatherapy",
+            "Couples Massage",
+            "Foot Massage",
+            "Facial Massage"
+        ],
+        "rating": 9.7,
+        "distance": "12.1km",
+        "city": "Helsinki",
+        "region": "Uusimaa",
+        "description": "A premium wellness spa offering a comprehensive selection of therapeutic, relaxation and couples massage treatments."
+    }
+]
