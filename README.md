@@ -1,4 +1,4 @@
-# RAG WITH FAISS AND RAGAS 
+# RAG  
 
 A personal project focused on building a Retrieval-Augmented Generation (RAG) system with FastAPI, vector search, and language models.
 
@@ -15,7 +15,7 @@ This is a learning and portfolio project designed to explore how local business 
 
 - loads structured local data
 - converts records into embeddings
-- stores vectors in FAISS 
+- stores vectors in Pinecone 
 - metadata store saperately
 - retrieves relevant context with similarity search
 - generates a final response using Groq
