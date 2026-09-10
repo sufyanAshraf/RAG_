@@ -30,8 +30,6 @@ async def chat(request: chatRequest) -> chatResponse:
     groq_api_key, pinecone_api_key = read_api_key_from_config()
 
     model = GroqModel(groq_api_key)   
-    
-    
 
     # Store the vectors in the database
     index_name = "rag-hotel"
