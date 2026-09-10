@@ -53,7 +53,7 @@ class GroqModel:
             system_prompt = "You are a helpful assistant."
 
         if not full_prompt:
-            logger.error(f"Error occurred Full prompt is required : {e}")
+            logger.error("Error occurred: Full prompt is required.")
             raise ValueError("Full prompt is required to invoke the model.")
          
         try:

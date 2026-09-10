@@ -39,3 +39,23 @@
 2026-09-09 22:53:55,132 INFO root Successfull query database
 2026-09-09 22:53:55,689 INFO httpx HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
 2026-09-09 22:53:55,699 INFO root Successfull response
+2026-09-10 20:46:39,703 ERROR root Error occurred while invoking the model: Model interaction failed
+2026-09-10 20:47:25,407 ERROR root Error occurred: Full prompt is required.
+2026-09-10 20:47:25,410 ERROR root Error occurred while invoking the model: Model interaction failed
+2026-09-10 20:50:20,273 ERROR root Error occurred: Full prompt is required.
+2026-09-10 20:50:20,276 ERROR root Error occurred while invoking the model: Model interaction failed
+2026-09-10 20:54:24,658 INFO root Successfull query database
+2026-09-10 20:54:24,659 INFO root Successfull response
+2026-09-10 20:54:24,661 INFO httpx2 HTTP Request: POST http://testserver/ "HTTP/1.1 200 OK"
+2026-09-10 20:54:24,668 INFO root Successfull query database
+2026-09-10 20:54:40,557 INFO root Successfull query database
+2026-09-10 20:54:40,557 INFO root Successfull response
+2026-09-10 20:54:40,558 INFO httpx2 HTTP Request: POST http://testserver/ "HTTP/1.1 200 OK"
+2026-09-10 20:54:53,674 INFO root Successfull query database
+2026-09-10 20:54:53,674 INFO root Successfull response
+2026-09-10 20:54:53,676 INFO httpx2 HTTP Request: POST http://testserver/ "HTTP/1.1 200 OK"
+2026-09-10 20:54:53,684 INFO root Successfull query database
+2026-09-10 20:55:28,786 INFO root Successfull query database
+2026-09-10 20:55:28,787 INFO root Successfull response
+2026-09-10 20:55:28,787 INFO httpx2 HTTP Request: POST http://testserver/ "HTTP/1.1 200 OK"
+2026-09-10 20:55:28,792 INFO root Successfull query database
