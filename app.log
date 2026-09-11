@@ -159,3 +159,91 @@
             
 2026-09-11 22:30:50,173 INFO httpx HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
 2026-09-11 22:30:50,174 INFO root Successfull response
+2026-09-11 22:40:44,881 INFO root Reading API key from config file
+2026-09-11 22:40:45,540 INFO root Pinecone Successfully initilize
+2026-09-11 22:40:45,573 INFO pinecone.client.indexes Describing index 'rag-hotel'
+2026-09-11 22:40:46,731 INFO httpx HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel "HTTP/1.1 200 OK"
+2026-09-11 22:40:46,732 INFO root Index already exist
+2026-09-11 22:40:46,933 INFO pinecone.index Index client created for host https://rag-hotel-esaxznd.svc.aped-4627-b74a.pinecone.io
+2026-09-11 22:40:48,247 INFO httpx HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-11 22:40:48,257 INFO pinecone.index Searching namespace 'hotels' with top_k=5
+2026-09-11 22:40:49,627 INFO root Successfull query database
+2026-09-11 22:40:49,628 INFO root context:
+            Name: Flavors Restaurant
+            Category: restaurant
+            City: Helsinki
+            Region: Uusimaa
+            Rating: 9.5
+            Distance: 10.6km
+            Services: ['Mutton Karahi', 'Chicken Karahi', 'Biryani', 'Seekh Kebab', 'Chicken Tikka', 'Naan', 'Haleem', 'Kheer']
+            Description: An authentic Pakistani restaurant known for karahi, biryani, kebabs, haleem and traditional desserts.
+
+            ---
+            
+2026-09-11 22:40:49,883 INFO httpx HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-11 22:40:49,885 INFO root Successfull response
+2026-09-11 22:41:29,805 INFO root Reading API key from config file
+2026-09-11 22:41:30,733 INFO root Pinecone Successfully initilize
+2026-09-11 22:41:30,778 INFO pinecone.client.indexes Describing index 'rag-hotel'
+2026-09-11 22:41:31,861 INFO httpx HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel "HTTP/1.1 200 OK"
+2026-09-11 22:41:31,866 INFO root Index already exist
+2026-09-11 22:41:32,116 INFO pinecone.index Index client created for host https://rag-hotel-esaxznd.svc.aped-4627-b74a.pinecone.io
+2026-09-11 22:41:34,851 INFO httpx HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-11 22:41:34,863 INFO pinecone.index Searching namespace 'hotels' with top_k=5
+2026-09-11 22:41:36,179 INFO root Successfull query database
+2026-09-11 22:41:36,179 ERROR root Error in context
+2026-09-11 22:43:48,945 INFO root Reading API key from config file
+2026-09-11 22:43:49,783 INFO root Pinecone Successfully initilize
+2026-09-11 22:43:49,817 INFO pinecone.client.indexes Describing index 'rag-hotel'
+2026-09-11 22:43:50,839 INFO httpx HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel "HTTP/1.1 200 OK"
+2026-09-11 22:43:50,841 INFO root Index already exist
+2026-09-11 22:43:51,095 INFO pinecone.index Index client created for host https://rag-hotel-esaxznd.svc.aped-4627-b74a.pinecone.io
+2026-09-11 22:43:52,795 INFO httpx HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-11 22:43:52,807 INFO pinecone.index Searching namespace 'hotels' with top_k=5
+2026-09-11 22:43:54,116 INFO root Successfull query database
+2026-09-11 22:43:54,116 ERROR root Error in context
+2026-09-11 22:45:29,699 INFO root Reading API key from config file
+2026-09-11 22:45:30,592 INFO root Pinecone Successfully initilize
+2026-09-11 22:45:30,629 INFO pinecone.client.indexes Describing index 'rag-hotel'
+2026-09-11 22:45:32,439 INFO httpx HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel "HTTP/1.1 200 OK"
+2026-09-11 22:45:32,441 INFO root Index already exist
+2026-09-11 22:45:32,682 INFO pinecone.index Index client created for host https://rag-hotel-esaxznd.svc.aped-4627-b74a.pinecone.io
+2026-09-11 22:45:34,572 INFO httpx HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-11 22:45:34,599 INFO pinecone.index Searching namespace 'hotels' with top_k=5
+2026-09-11 22:45:35,903 INFO root Successfull query database
+2026-09-11 22:45:35,903 INFO root context:
+            Name: Flavors Restaurant
+            Category: restaurant
+            City: Helsinki
+            Region: Uusimaa
+            Rating: 9.5
+            Distance: 10.6km
+            Services: ['Mutton Karahi', 'Chicken Karahi', 'Biryani', 'Seekh Kebab', 'Chicken Tikka', 'Naan', 'Haleem', 'Kheer']
+            Description: An authentic Pakistani restaurant known for karahi, biryani, kebabs, haleem and traditional desserts.
+
+            ---
+            
+2026-09-11 22:45:35,904 ERROR root Groq API failed: 'GroqModel' object has no attribute 'invoke'
+2026-09-11 22:46:32,344 INFO root Reading API key from config file
+2026-09-11 22:46:33,179 INFO root Pinecone Successfully initilize
+2026-09-11 22:46:33,223 INFO pinecone.client.indexes Describing index 'rag-hotel'
+2026-09-11 22:46:34,474 INFO httpx HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel "HTTP/1.1 200 OK"
+2026-09-11 22:46:34,477 INFO root Index already exist
+2026-09-11 22:46:34,764 INFO pinecone.index Index client created for host https://rag-hotel-esaxznd.svc.aped-4627-b74a.pinecone.io
+2026-09-11 22:46:36,910 INFO httpx HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-11 22:46:36,933 INFO pinecone.index Searching namespace 'hotels' with top_k=5
+2026-09-11 22:46:38,325 INFO root Successfull query database
+2026-09-11 22:46:38,325 INFO root context:
+            Name: Flavors Restaurant
+            Category: restaurant
+            City: Helsinki
+            Region: Uusimaa
+            Rating: 9.5
+            Distance: 10.6km
+            Services: ['Mutton Karahi', 'Chicken Karahi', 'Biryani', 'Seekh Kebab', 'Chicken Tikka', 'Naan', 'Haleem', 'Kheer']
+            Description: An authentic Pakistani restaurant known for karahi, biryani, kebabs, haleem and traditional desserts.
+
+            ---
+            
+2026-09-11 22:46:38,750 INFO httpx HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-11 22:46:38,752 INFO root Successfull response
