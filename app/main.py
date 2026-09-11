@@ -53,26 +53,30 @@ async def chat(request: chatRequest) -> chatResponse:
 
     try:
         results = pc_search(query, index, namespace, filter)
-    except:
-        logger.info("Error: retriving query from Pineonce")
-        raise
+    except Exception as e:
+        logger.error("Error: retriving query from Pineonce")
+        raise RuntimeError(f"Pinecone API failed: {e}")
  
-    logger.info("Successfull query database")  
+    logger.info("Successfull query database") 
+
     # create prompt
     full_prompt = getPrompt(query, results)
+
     if not full_prompt:
         logger.error("Error in context")
-        raise
+        raise ValueError("Value cannot be empty") 
 
     # -------------------------
     # 8. Call Groq
     # -------------------------
-        
-    response = model.invoke_model(
-        full_prompt=full_prompt
-    ) 
-    logger.info("Successfull response")
-     
+    try:
+        response = model.invoke_model(
+            full_prompt=full_prompt
+        ) 
+        logger.info("Successfull response")
+    except Exception as e:
+        logger.error(f"Groq API failed: {e}")
+        raise RuntimeError(f"Groq API failed: {e}")
  
     return chatResponse(response=response) 
 
