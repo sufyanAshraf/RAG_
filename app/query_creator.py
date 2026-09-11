@@ -40,6 +40,17 @@ class queryCreator:
 
         return query_filter
 
+    def create_query(self, model, query):
+        prompt= self.prompt_create_query(query) 
+        response = model.invoke_model( prompt)
+
+        # system_prompt = "You are a helpful assistant."
+        # response = model.invoke([{"role": "system", "content": system_prompt}, {"role": "user", "content": prompt}])
+        # response = response.content 
+        
+        return self.create_filter(response)
+
+
     def prompt_create_query(self, query):
         prompt = f"""
             You are a query parsing engine for a local search assistant covering three categories of places: hotels, spas, and restaurants.
