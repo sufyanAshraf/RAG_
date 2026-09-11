@@ -31,7 +31,7 @@ def create_embeddings(data, index, namespace ):
                 "name": place["name"],
                 "city": place["city"],
                 "region": place["region"],
-                "services": ", ".join(place["services"]),  # list values are safer as strings
+                "services": place["services"],  # list 
                 "rating": str(place["rating"]),
                 "distance": place["distance"],
                 "description": place["description"],
