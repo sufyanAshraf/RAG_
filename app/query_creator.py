@@ -1,4 +1,4 @@
-
+import json
 
 class queryCreator:
     def __init__(self):
@@ -8,11 +8,37 @@ class queryCreator:
         self.spa_services = ['Thai Massage', 'Swedish Massage', 'Deep Tissue Massage', 'Hot Stone Massage', 'Aromatherapy', 'Couples Massage', 'Foot Massage', 'Head Massage', 'Sports Massage', 'Facial Massage']
         self.restaurant_services = ['Biryani', 'Chicken Karahi', 'Chicken Tikka', 'Naan', 'Raita', 'Burgers', 'Pizza', 'French Fries', 'Chicken Wings', 'Pasta', 'Mutton Karahi', 'Seekh Kebab', 'Kheer', 'Sandwiches', 'Shawarma', 'Gulab Jamun', 'Chocolate Cake', 'Coffee', 'Haleem']
 
-    # def create_query(self, model):
-    #     prompt= self.prompt_create_query()
+    def create_filter(self, response):
+             
+        data = json.loads(response)
+    
+        query_filter = {}
 
-    #     model.invoke(prompt)
+        field_mapping = {
+            "category": "Category",
+            "City": "city",
+            "Region": "region",
+            "rating": "rating",
+            "distance": "distance"
+        }
+    
+        for json_key, db_key in field_mapping.items():
+            value = data.get(json_key)
 
+            if value is not None:
+                query_filter[db_key] = {"$eq": value}
+
+        # Services
+        services = data.get("service")
+
+        if services:
+            services = [s for s in services if s is not None]
+
+            if services:
+                query_filter["service"] = {"$in": services}
+
+
+        return query_filter
 
     def prompt_create_query(self):
         prompt = f"""
