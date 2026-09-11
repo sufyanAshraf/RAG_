@@ -1,9 +1,12 @@
 import json
 
+# from groq import Groq
+# from langchain_groq import ChatGroq
+
 class queryCreator:
     def __init__(self):
         self.categories =  ["spa", "hotel", "restaurant"]
-        self.filter = ["Name" , "City", "Region" , "rating" , "distance" ] 
+        self.filter = ["name" , "city", "region" , "rating" , "distance" ] 
         self.hotel_services = ['Free WiFi', 'Swimming Pool', 'Gym', 'Restaurant', 'Parking', 'Room Service', 'Airport Shuttle', 'Spa', 'Breakfast', 'Garden', 'Private Dining']
         self.spa_services = ['Thai Massage', 'Swedish Massage', 'Deep Tissue Massage', 'Hot Stone Massage', 'Aromatherapy', 'Couples Massage', 'Foot Massage', 'Head Massage', 'Sports Massage', 'Facial Massage']
         self.restaurant_services = ['Biryani', 'Chicken Karahi', 'Chicken Tikka', 'Naan', 'Raita', 'Burgers', 'Pizza', 'French Fries', 'Chicken Wings', 'Pasta', 'Mutton Karahi', 'Seekh Kebab', 'Kheer', 'Sandwiches', 'Shawarma', 'Gulab Jamun', 'Chocolate Cake', 'Coffee', 'Haleem']
@@ -15,27 +18,27 @@ class queryCreator:
         query_filter = {}
 
         field_mapping = {
-            "category": "Category",
-            "City": "city",
-            "Region": "region",
-            "rating": "rating",
-            "distance": "distance"
+            "Category": "Category",
+            "city": "city",
+            "region": "region",
+            "rating": "rating"
+            # "distance": "distance" # you need distance in integer otherwise it will do exact match
         }
     
         for json_key, db_key in field_mapping.items():
             value = data.get(json_key)
-
+            
             if value is not None:
                 query_filter[db_key] = {"$eq": value}
 
         # Services
-        services = data.get("service")
-
+        services = data.get("service") 
+        
         if services:
             services = [s for s in services if s is not None]
 
             if services:
-                query_filter["service"] = {"$in": services}
+                query_filter["services"] = {"$in": services}
 
 
         return query_filter
@@ -59,7 +62,7 @@ class queryCreator:
 
             ## STEP 1 — Identify the category
             Choose exactly one value from:
-            categories = {self.categories}
+            Categories = {self.categories}
 
             Use context clues:
             - Food/dish/cuisine words (e.g. burger, pizza, biryani, naan, coffee) → "restaurant"
@@ -71,9 +74,9 @@ class queryCreator:
             filters = {self.filter}
 
             Extract values only if explicitly present or clearly implied in the query:
-            - "Name": a specific place name mentioned by the user (e.g. "Royal Inn")
-            - "City": a city name (e.g. "Helsinki", "Espoo", "Vantaa")
-            - "Region": a region name (e.g. "Uusimaa")
+            - "name": a specific place name mentioned by the user (e.g. "Royal Inn")
+            - "city": a city name (e.g. "Helsinki", "Espoo", "Vantaa")
+            - "region": a region name (e.g. "Uusimaa")
             - "rating": a minimum rating if mentioned (e.g. "rated above 8", "9+ rating") — output as a number
             - "distance": a distance value if mentioned (e.g. "within 5km", "under 3 km") — output as a string in the same unit given, e.g. "5km"
 
@@ -95,10 +98,10 @@ class queryCreator:
             Always return exactly this JSON structure, with no other keys, no commentary, and no markdown code fences around it:
 
             {{
-            "category": "<hotel | spa | restaurant>",
-            "Name": <string or null>,
-            "City": <string or null>,
-            "Region": <string or null>,
+            "Category": "<hotel | spa | restaurant>",
+            "name": <string or null>,
+            "city": <string or null>,
+            "region": <string or null>,
             "rating": <number or null>,
             "distance": <string or null>,
             "service": [<matched service strings>]
@@ -110,35 +113,36 @@ class queryCreator:
             - "service" is always a list, even for a single service, even if empty.
             - Match service names exactly as spelled in the category's service list (correct casing, correct plural/singular form).
             - If the query mixes signals from multiple categories, pick the category that best matches the primary intent of the query.
-            - Never fabricate a City, Region, or Name that wasn't stated or strongly implied by the user.
+            - Never fabricate a city, region, or name that wasn't stated or strongly implied by the user.
 
             ## EXAMPLES
 
             Query: "find me a burger place in 5km in helsinki"
             Output:
-            {{"category": "restaurant", "Name": null, "City": "Helsinki", "Region": null, "rating": null, "distance": "5km", "service": ["Burgers"]}}
+            {{"Category": "restaurant", "name": null, "city": "Helsinki", "region": null, "rating": null, "distance": "5km", "service": ["Burgers"]}}
 
             Query: "I want burger and naan near vantaa"
             Output:
-            {{"category": "restaurant", "Name": null, "City": "Vantaa", "Region": null, "rating": null, "distance": null, "service": ["Burgers", "Naan"]}}
+            {{"Category": "restaurant", "name": null, "city": "Vantaa", "region": null, "rating": null, "distance": null, "service": ["Burgers", "Naan"]}}
 
             Query: "any good spa in espoo with hot stone and couples massage, rated above 9"
             Output:
-            {{"category": "spa", "Name": null, "City": "Espoo", "Region": null, "rating": 9, "distance": null, "service": ["Hot Stone Massage", "Couples Massage"]}}
+            {{"Category": "spa", "name": null, "city": "Espoo", "region": null, "rating": 9, "distance": null, "service": ["Hot Stone Massage", "Couples Massage"]}}
 
             Query: "hotel with a pool and free wifi within 10km of helsinki"
             Output:
-            {{"category": "hotel", "Name": null, "City": "Helsinki", "Region": null, "rating": null, "distance": "10km", "service": ["Swimming Pool", "Free WiFi"]}}
+            {{"Category": "hotel", "name": null, "city": "Helsinki", "region": null, "rating": null, "distance": "10km", "service": ["Swimming Pool", "Free WiFi"]}}
 
             Query:
             {query}
             
             Output:
-            {{"category": "hotel", "Name": "Royal Inn", "City": null, "Region": null, "rating": null, "distance": null, "service": []}}
+            {{"Category": "hotel", "name": "Royal Inn", "city": null, "region": null, "rating": null, "distance": null, "service": []}}
         """
         return prompt
 
 # obj = queryCreator() 
+# key = ""
 # model = ChatGroq(groq_api_key=key, model_name="openai/gpt-oss-safeguard-20b")
 
 # print(obj.create_query(model, "somewhere for haleem and kheer close to me, under 6km, in helsinki"))

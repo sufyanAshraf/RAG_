@@ -50,13 +50,16 @@ async def chat(request: chatRequest) -> chatResponse:
     query = request.query
     filter_obj = queryCreator()
     filter = filter_obj.create_query(model, query)
-    results = pc_search(query, index, namespace, filter)
 
-    logger.info("Successfull query database")
-
+    try:
+        results = pc_search(query, index, namespace, filter)
+    except:
+        raise
+ 
+    logger.info("Successfull query database")  
     # create prompt
-    full_prompt =getPrompt(query, results)
-    
+    full_prompt = getPrompt(query, results)
+         
 
     # -------------------------
     # 8. Call Groq
