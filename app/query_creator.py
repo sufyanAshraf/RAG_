@@ -40,7 +40,7 @@ class queryCreator:
 
         return query_filter
 
-    def prompt_create_query(self):
+    def prompt_create_query(self, query):
         prompt = f"""
             You are a query parsing engine for a local search assistant covering three categories of places: hotels, spas, and restaurants.
 
@@ -119,12 +119,58 @@ class queryCreator:
             Output:
             {{"category": "hotel", "Name": null, "City": "Helsinki", "Region": null, "rating": null, "distance": "10km", "service": ["Swimming Pool", "Free WiFi"]}}
 
-            Query: "show me Royal Inn"
+            Query:
+            {query}
+            
             Output:
             {{"category": "hotel", "Name": "Royal Inn", "City": null, "Region": null, "rating": null, "distance": null, "service": []}}
         """
         return prompt
 
-# obj = queryCreator()
+# obj = queryCreator() 
+# model = ChatGroq(groq_api_key=key, model_name="openai/gpt-oss-safeguard-20b")
 
-# print(obj.prompt_create_query())
+# print(obj.create_query(model, "somewhere for haleem and kheer close to me, under 6km, in helsinki"))
+
+
+# test_cases = [ 
+#     # --- RESTAURANT: multiple services ---
+#     {"query": "I want burger and naan near vantaa",
+#      "expected": {"category": "restaurant", "Name": None, "City": "Vantaa", "Region": None, "rating": None, "distance": None, "service": ["Burgers", "Naan"]}},
+#     {"query": "any place with biryani, chicken karahi and naan in helsinki rated above 8.5",
+#      "expected": {"category": "restaurant", "Name": None, "City": "Helsinki", "Region": None, "rating": 8.5, "distance": None, "service": ["Biryani", "Chicken Karahi", "Naan"]}},
+#     {"query": "show me somewhere with shawarma and french fries within 4km in espoo",
+#      "expected": {"category": "restaurant", "Name": None, "City": "Espoo", "Region": None, "rating": None, "distance": "4km", "service": ["Shawarma", "French Fries"]}},
+
+#     # --- RESTAURANT: no service / just category+filters ---
+#     {"query": "find a restaurant in vantaa rated above 9",
+#      "expected": {"category": "restaurant", "Name": None, "City": "Vantaa", "Region": None, "rating": 9, "distance": None, "service": []}},
+#     {"query": "best restaurant in uusimaa region",
+#      "expected": {"category": "restaurant", "Name": None, "City": None, "Region": "Uusimaa", "rating": None, "distance": None, "service": []}},
+
+#     # --- Filter-only / edge cases ---
+#     {"query": "hotels in uusimaa",
+#      "expected": {"category": "hotel", "Name": None, "City": None, "Region": "Uusimaa", "rating": None, "distance": None, "service": []}},
+#     {"query": "best rated restaurant within 3km",
+#      "expected": {"category": "restaurant", "Name": None, "City": None, "Region": None, "rating": None, "distance": "3km", "service": []}},
+#     {"query": "spa rated above 9.5 in helsinki",
+#      "expected": {"category": "spa", "Name": None, "City": "Helsinki", "Region": None, "rating": 9.5, "distance": None, "service": []}},
+
+#     # --- Ambiguous / tricky wording ---
+#     {"query": "somewhere for haleem and kheer close to me, under 6km, in helsinki",
+#      "expected": {"category": "restaurant", "Name": None, "City": "Helsinki", "Region": None, "rating": None, "distance": "6km", "service": ["Haleem", "Kheer"]}},
+#     {"query": "deep tissue and sports massage place in espoo, at least 8 rating",
+#      "expected": {"category": "spa", "Name": None, "City": "Espoo", "Region": None, "rating": 8, "distance": None, "service": ["Deep Tissue Massage", "Sports Massage"]}},
+#     {"query": "budget hotel with breakfast in vantaa under 5km",
+#      "expected": {"category": "hotel", "Name": None, "City": "Vantaa", "Region": None, "rating": None, "distance": "5km", "service": ["Breakfast"]}},
+
+# ]
+
+
+# for i in test_cases:
+#     q = i["query"]
+#     print("\n",q)
+
+#     print(obj.create_query(model, q))
+
+#     print("expected: ", i["expected"])
