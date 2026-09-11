@@ -54,12 +54,15 @@ async def chat(request: chatRequest) -> chatResponse:
     try:
         results = pc_search(query, index, namespace, filter)
     except:
+        logger.info("Error: retriving query from Pineonce")
         raise
  
     logger.info("Successfull query database")  
     # create prompt
     full_prompt = getPrompt(query, results)
-         
+    if not full_prompt:
+        logger.error("Error in context")
+        raise
 
     # -------------------------
     # 8. Call Groq
