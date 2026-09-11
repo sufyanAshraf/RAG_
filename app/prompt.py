@@ -1,3 +1,5 @@
+from .logger import logger
+
 def create_context(results):
     hits = results["result"]["hits"]
 
@@ -18,11 +20,15 @@ def create_context(results):
 
             ---
             """
+        logger.info("context:" + context)  
     return context
 
 
 def getPrompt(query, results):
     context = create_context(results)
+    if not context:
+        return None
+
     full_prompt = f"""
         You are a helpful AI assistant.
 
@@ -43,6 +49,7 @@ def getPrompt(query, results):
         - Include unnecessary introductory or closing remarks.
         - Use Unicode spaces.
 
-        Use normal spaces and newlines.
+        Use normal spaces and newlines. 
+        use bullet points
         """
     return full_prompt
