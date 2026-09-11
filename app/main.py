@@ -8,6 +8,7 @@ from .embeddingsCreator import create_embeddings
 from .dataBase import dataBase
 from .query_DB import pc_search 
 from .prompt import getPrompt
+from .query_creator import queryCreator
 
 def read_api_key_from_config() -> str:
     """Read the API key from the config.ini file."""
@@ -47,7 +48,9 @@ async def chat(request: chatRequest) -> chatResponse:
 
     # query model
     query = request.query
-    results = pc_search(query, index, namespace)
+    filter_obj = queryCreator()
+    filter = filter_obj.create_query(model, query)
+    results = pc_search(query, index, namespace, filter)
 
     logger.info("Successfull query database")
 

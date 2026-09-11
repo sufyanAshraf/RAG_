@@ -1,16 +1,13 @@
 
 
-def pc_search(query, index, namespace):
+def pc_search(query, index, namespace, filter):
 
     results = index.search(
         namespace=namespace,
         query={
             "top_k": 5,
             "inputs": {"text": query},
-            "filter": {
-                "Category": {"$eq": "spa"},
-                "city": {"$eq": "Helsinki"}
-            }
+            "filter":  filter
         }
     )
 
