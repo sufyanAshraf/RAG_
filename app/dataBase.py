@@ -46,7 +46,7 @@ class dataBase:
                 logger.info("Index already exist")
                 index_flag = True
         except Exception as e:
-            logger.info("Index fail")
+            logger.error(f"Error pinecone index creation failed: {e}")
             raise 
 
         return self.pc, index_flag

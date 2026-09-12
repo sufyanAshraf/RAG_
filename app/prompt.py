@@ -20,13 +20,14 @@ def create_context(results):
 
             ---
             """
-        logger.info("context:" + context)  
+    # logger.info("context:" + context)  
     return context
 
 
 def getPrompt(query, results):
     context = create_context(results)
     if not context:
+        logger.error("Error in context")
         return None
 
     full_prompt = f"""

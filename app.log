@@ -247,3 +247,139 @@
             
 2026-09-11 22:46:38,750 INFO httpx HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
 2026-09-11 22:46:38,752 INFO root Successfull response
+2026-09-12 13:10:30,014 | INFO | root | main.py | read_api_key_from_config | 15 | Reading API key from config file
+2026-09-12 13:10:30,931 | INFO | root | dataBase.py | __init__ | 28 | Pinecone Successfully initilize
+2026-09-12 13:10:31,002 | INFO | pinecone.client.indexes | indexes.py | describe | 231 | Describing index 'rag-hotel'
+2026-09-12 13:10:32,163 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel "HTTP/1.1 200 OK"
+2026-09-12 13:10:32,165 | INFO | root | dataBase.py | create_index | 46 | Index already exist
+2026-09-12 13:10:32,422 | INFO | pinecone.index | __init__.py | __init__ | 195 | Index client created for host https://rag-hotel-esaxznd.svc.aped-4627-b74a.pinecone.io
+2026-09-12 13:10:34,313 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-12 13:10:34,324 | INFO | pinecone.index | __init__.py | search | 1490 | Searching namespace 'hotels' with top_k=5
+2026-09-12 13:10:35,850 | INFO | root | main.py | chat | 60 | Successfull query database
+2026-09-12 13:10:35,850 | INFO | root | prompt.py | create_context | 23 | context:
+            Name: Urban Bites
+            Category: restaurant
+            City: Helsinki
+            Region: Uusimaa
+            Rating: 9.1
+            Distance: 4.3km
+            Services: ['Burgers', 'Pizza', 'French Fries', 'Chicken Wings', 'Biryani', 'Pasta']
+            Description: A casual restaurant offering burgers, pizza, pasta, chicken wings and popular fast food.
+
+            ---
+            
+2026-09-12 13:10:35,851 | INFO | root | prompt.py | create_context | 23 | context:
+            Name: Urban Bites
+            Category: restaurant
+            City: Helsinki
+            Region: Uusimaa
+            Rating: 9.1
+            Distance: 4.3km
+            Services: ['Burgers', 'Pizza', 'French Fries', 'Chicken Wings', 'Biryani', 'Pasta']
+            Description: A casual restaurant offering burgers, pizza, pasta, chicken wings and popular fast food.
+
+            ---
+            
+            Name: Food Junction
+            Category: restaurant
+            City: Helsinki
+            Region: Uusimaa
+            Rating: 7.9
+            Distance: 1.8km
+            Services: ['Burgers', 'Pizza', 'French Fries', 'Chicken Wings', 'Pasta', 'Sandwiches', 'Shawarma']
+            Description: A fast-food restaurant serving burgers, pizza, shawarma, sandwiches, pasta and crispy chicken.
+
+            ---
+            
+2026-09-12 13:10:35,851 | INFO | root | prompt.py | create_context | 23 | context:
+            Name: Urban Bites
+            Category: restaurant
+            City: Helsinki
+            Region: Uusimaa
+            Rating: 9.1
+            Distance: 4.3km
+            Services: ['Burgers', 'Pizza', 'French Fries', 'Chicken Wings', 'Biryani', 'Pasta']
+            Description: A casual restaurant offering burgers, pizza, pasta, chicken wings and popular fast food.
+
+            ---
+            
+            Name: Food Junction
+            Category: restaurant
+            City: Helsinki
+            Region: Uusimaa
+            Rating: 7.9
+            Distance: 1.8km
+            Services: ['Burgers', 'Pizza', 'French Fries', 'Chicken Wings', 'Pasta', 'Sandwiches', 'Shawarma']
+            Description: A fast-food restaurant serving burgers, pizza, shawarma, sandwiches, pasta and crispy chicken.
+
+            ---
+            
+            Name: Taste Hub
+            Category: restaurant
+            City: Espoo
+            Region: Uusimaa
+            Rating: 8.9
+            Distance: 5.4km
+            Services: ['Biryani', 'Chicken Karahi', 'Burgers', 'Pizza', 'Chicken Tikka', 'French Fries', 'Naan']
+            Description: A diverse restaurant combining South Asian dishes with popular burgers, pizza and fast-food options.
+
+            ---
+            
+2026-09-12 13:10:35,851 | INFO | root | prompt.py | create_context | 23 | context:
+            Name: Urban Bites
+            Category: restaurant
+            City: Helsinki
+            Region: Uusimaa
+            Rating: 9.1
+            Distance: 4.3km
+            Services: ['Burgers', 'Pizza', 'French Fries', 'Chicken Wings', 'Biryani', 'Pasta']
+            Description: A casual restaurant offering burgers, pizza, pasta, chicken wings and popular fast food.
+
+            ---
+            
+            Name: Food Junction
+            Category: restaurant
+            City: Helsinki
+            Region: Uusimaa
+            Rating: 7.9
+            Distance: 1.8km
+            Services: ['Burgers', 'Pizza', 'French Fries', 'Chicken Wings', 'Pasta', 'Sandwiches', 'Shawarma']
+            Description: A fast-food restaurant serving burgers, pizza, shawarma, sandwiches, pasta and crispy chicken.
+
+            ---
+            
+            Name: Taste Hub
+            Category: restaurant
+            City: Espoo
+            Region: Uusimaa
+            Rating: 8.9
+            Distance: 5.4km
+            Services: ['Biryani', 'Chicken Karahi', 'Burgers', 'Pizza', 'Chicken Tikka', 'French Fries', 'Naan']
+            Description: A diverse restaurant combining South Asian dishes with popular burgers, pizza and fast-food options.
+
+            ---
+            
+            Name: Quick Feast
+            Category: restaurant
+            City: Vantaa
+            Region: Uusimaa
+            Rating: 7.7
+            Distance: 2.9km
+            Services: ['Burgers', 'Shawarma', 'Pizza', 'French Fries', 'Chicken Wings']
+            Description: A quick-service restaurant offering burgers, shawarma, pizza, fries and chicken wings.
+
+            ---
+            
+2026-09-12 13:10:36,258 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-12 13:10:36,259 | INFO | root | main.py | chat | 76 | Successfull response
+2026-09-12 13:14:08,602 | INFO | root | main.py | read_api_key_from_config | 15 | Reading API key from config file
+2026-09-12 13:14:09,447 | INFO | root | dataBase.py | __init__ | 28 | Pinecone Successfully initilize
+2026-09-12 13:14:09,480 | INFO | pinecone.client.indexes | indexes.py | describe | 231 | Describing index 'rag-hotel'
+2026-09-12 13:14:10,521 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel "HTTP/1.1 200 OK"
+2026-09-12 13:14:10,523 | INFO | root | dataBase.py | create_index | 46 | Index already exist
+2026-09-12 13:14:10,779 | INFO | pinecone.index | __init__.py | __init__ | 195 | Index client created for host https://rag-hotel-esaxznd.svc.aped-4627-b74a.pinecone.io
+2026-09-12 13:14:12,515 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-12 13:14:12,530 | INFO | pinecone.index | __init__.py | search | 1490 | Searching namespace 'hotels' with top_k=5
+2026-09-12 13:14:13,885 | INFO | root | main.py | chat | 60 | Successfull query database
+2026-09-12 13:14:14,517 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-12 13:14:14,522 | INFO | root | main.py | chat | 76 | Successfull response

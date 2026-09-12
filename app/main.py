@@ -64,7 +64,7 @@ async def chat(request: chatRequest) -> chatResponse:
 
     if not full_prompt:
         logger.error("Error in context")
-        raise ValueError("Value cannot be empty") 
+        raise ValueError("Prompt Value cannot be empty") 
 
     # -------------------------
     # 8. Call Groq
