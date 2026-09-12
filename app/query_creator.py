@@ -18,7 +18,7 @@ class queryCreator:
         query_filter = {}
 
         field_mapping = {
-            "Category": "Category",
+            "category": "category",
             "city": "city",
             "region": "region",
             "rating": "rating"
@@ -29,13 +29,13 @@ class queryCreator:
             value = data.get(json_key)
             
             if value is not None:
-                query_filter[db_key] = {"$eq": value}
+                query_filter[db_key] = {"$eq": value.lower()}
 
         # Services
         services = data.get("service") 
         
         if services:
-            services = [s for s in services if s is not None]
+            services = [s.lower() for s in services if s is not None]
 
             if services:
                 query_filter["services"] = {"$in": services}
@@ -62,7 +62,7 @@ class queryCreator:
 
             ## STEP 1 — Identify the category
             Choose exactly one value from:
-            Categories = {self.categories}
+            categories = {self.categories}
 
             Use context clues:
             - Food/dish/cuisine words (e.g. burger, pizza, biryani, naan, coffee) → "restaurant"
@@ -98,7 +98,7 @@ class queryCreator:
             Always return exactly this JSON structure, with no other keys, no commentary, and no markdown code fences around it:
 
             {{
-            "Category": "<hotel | spa | restaurant>",
+            "category": "<hotel | spa | restaurant>",
             "name": <string or null>,
             "city": <string or null>,
             "region": <string or null>,
@@ -119,25 +119,25 @@ class queryCreator:
 
             Query: "find me a burger place in 5km in helsinki"
             Output:
-            {{"Category": "restaurant", "name": null, "city": "Helsinki", "region": null, "rating": null, "distance": "5km", "service": ["Burgers"]}}
+            {{"category": "restaurant", "name": null, "city": "Helsinki", "region": null, "rating": null, "distance": "5km", "service": ["Burgers"]}}
 
             Query: "I want burger and naan near vantaa"
             Output:
-            {{"Category": "restaurant", "name": null, "city": "Vantaa", "region": null, "rating": null, "distance": null, "service": ["Burgers", "Naan"]}}
+            {{"category": "restaurant", "name": null, "city": "Vantaa", "region": null, "rating": null, "distance": null, "service": ["Burgers", "Naan"]}}
 
             Query: "any good spa in espoo with hot stone and couples massage, rated above 9"
             Output:
-            {{"Category": "spa", "name": null, "city": "Espoo", "region": null, "rating": 9, "distance": null, "service": ["Hot Stone Massage", "Couples Massage"]}}
+            {{"category": "spa", "name": null, "city": "Espoo", "region": null, "rating": 9, "distance": null, "service": ["Hot Stone Massage", "Couples Massage"]}}
 
             Query: "hotel with a pool and free wifi within 10km of helsinki"
             Output:
-            {{"Category": "hotel", "name": null, "city": "Helsinki", "region": null, "rating": null, "distance": "10km", "service": ["Swimming Pool", "Free WiFi"]}}
+            {{"category": "hotel", "name": null, "city": "Helsinki", "region": null, "rating": null, "distance": "10km", "service": ["Swimming Pool", "Free WiFi"]}}
 
             Query:
             {query}
             
             Output:
-            {{"Category": "hotel", "name": "Royal Inn", "city": null, "region": null, "rating": null, "distance": null, "service": []}}
+            {{"category": "hotel", "name": "Royal Inn", "city": null, "region": null, "rating": null, "distance": null, "service": []}}
         """
         return prompt
 

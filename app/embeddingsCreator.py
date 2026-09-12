@@ -15,26 +15,26 @@ def create_embeddings(data, index, namespace ):
         for i, place in enumerate(data[j]):
 
             content = (
-                f"Name: {place['name']}, "
-                f"City: {place['city']} "
-                f"Region: {place['region']} "
+                f"name: {place['name']}, "
+                f"city: {place['city']} "
+                f"region: {place['region']} "
                 f"rating: {str(place["rating"])}"
                 f"distance: {place["distance"]}"
                 f"Services: {', '.join(place['services'])}. "
-                f"Description: {place['description']}"
+                f"description: {place['description']}"
             )
+            distance = float(place["distance"].replace("km", "").strip())
 
             record = {
                 "_id": str(count),
                 "chunk_text": content,       # must match field_map's "text" -> "chunk_text"
-                "Category": cat[j],
-                "name": place["name"],
-                "city": place["city"],
-                "region": place["region"],
-                "services": place["services"],  # list 
-                "rating": str(place["rating"]),
-                "distance": place["distance"],
-                "description": place["description"],
+                "category": (cat[j]).lower(),
+                "name": (place["name"]).lower(),
+                "city": (place["city"]).lower(),
+                "region": (place["region"]).lower(),
+                "services": [service.lower() for service in place.get("services", [])],  # list 
+                "rating": float(place["rating"]),
+                "distance": distance, 
             }
 
             records.append(record)

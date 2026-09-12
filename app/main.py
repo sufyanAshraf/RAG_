@@ -12,7 +12,7 @@ async def chat(request: chatRequest) -> chatResponse:
 
     # Store the vectors in the database
     
-    namespace = "hotels" 
+    namespace = "services-providers" 
     db = dataBase(pinecone_api_key)
     index_flag = db.create_index()
     index = db.get_index()
