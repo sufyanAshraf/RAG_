@@ -5,8 +5,7 @@ from .logger import logger
 from .models import GroqModel   
 from .readData import readData
 from .embeddingsCreator import create_embeddings
-from .dataBase import dataBase
-from .query_DB import pc_search 
+from .dataBase import dataBase 
 from .prompt import getPrompt
 from .query_creator import queryCreator
 
@@ -33,12 +32,12 @@ async def chat(request: chatRequest) -> chatResponse:
     model = GroqModel(groq_api_key)   
 
     # Store the vectors in the database
-    index_name = "rag-hotel"
+    
     namespace = "hotels" 
     db = dataBase(pinecone_api_key)
-    pc, index_flag = db.create_index(index_name)
-    index = pc.Index(index_name)
-
+    index_flag = db.create_index()
+    index = db.get_index()
+    
     if index_flag == False:
         read_data = readData()
         data = read_data.readjson()
@@ -46,13 +45,13 @@ async def chat(request: chatRequest) -> chatResponse:
         # Create embeddings for the data
         index = create_embeddings(data, index, namespace )
 
-    # query model
+    # create filter
     query = request.query
     filter_obj = queryCreator()
     filter = filter_obj.create_query(model, query)
 
     try:
-        results = pc_search(query, index, namespace, filter)
+        results = db.pc_search(query, index, namespace, filter)
     except Exception as e:
         logger.error("Error: retriving query from Pineonce")
         raise RuntimeError(f"Pinecone API failed: {e}")

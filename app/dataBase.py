@@ -11,7 +11,7 @@ class dataBase:
     #         cls._instance = super().__new__(cls)
     #     return cls._instance
 
-    def __init__(self, key):
+    def __init__(self, key, index_name = "rag-hotel"):
         # if not hasattr(self, "index"):
         #     self.index = None
 
@@ -19,21 +19,24 @@ class dataBase:
             raise ValueError("API key is required for Pinecone.")
         self.key = key
 
+        self.index_name = index_name
+
         try:
-            self.pc = Pinecone(api_key=self.key)
+            self.pc = Pinecone(api_key=self.key) #connection
         except Exception as e:
             logger.error(f"Error initializing pinecone: {e}")
             raise Exception(f"Failed to initialize pinecone: {e}")
         
-        logger.info("Pinecone Successfully initilize")
+        logger.info("Pinecone Successfully connected")
+        
 
-    def create_index(self, index_name):
+    def create_index(self):
         index_flag = False
         try:
         
-            if not self.pc.has_index(index_name):
+            if not self.pc.has_index(self.index_name):
                 self.pc.create_index_for_model(
-                    name=index_name,
+                    name=self.index_name,
                     cloud="aws",
                     region="us-east-1",
                     embed={
@@ -49,4 +52,21 @@ class dataBase:
             logger.error(f"Error pinecone index creation failed: {e}")
             raise 
 
-        return self.pc, index_flag
+        return index_flag
+
+    def get_index(self):
+        index = self.pc.Index(self.index_name)
+        return index
+
+    def pc_search(self, query, index, namespace, filter):
+
+        results = index.search(
+            namespace=namespace,
+            query={
+                "top_k": 5,
+                "inputs": {"text": query},
+                "filter":  filter
+            }
+        )
+
+        return results
