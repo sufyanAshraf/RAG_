@@ -4,7 +4,7 @@ import configparser
 from .logger import logger  
 from .models import GroqModel   
 from .readData import readData
-from .embeddingsCreator import create_embeddings
+from .prepareData import data_prepration_for_embadddings
 from .dataBase import dataBase 
 from .prompt import getPrompt
 from .query_creator import queryCreator

@@ -9,20 +9,18 @@ async def chat(request: chatRequest) -> chatResponse:
     groq_api_key, pinecone_api_key = read_api_key_from_config()
 
     model = GroqModel(groq_api_key)   
-
-    # Store the vectors in the database
     
-    namespace = "services-providers" 
+    # Store the vectors in the database    
     db = dataBase(pinecone_api_key)
-    index_flag = db.create_index()
-    index = db.get_index()
+    index_flag = db.get_index_flag() 
     
     if index_flag == False:
         read_data = readData()
         data = read_data.readjson()
     
         # Create embeddings for the data
-        index = create_embeddings(data, index, namespace )
+        prep_data = data_prepration_for_embadddings(data)
+        db.initial_upsert(prep_data)
 
     # create filter
     query = request.query
@@ -30,7 +28,7 @@ async def chat(request: chatRequest) -> chatResponse:
     filter = filter_obj.create_query(model, query)
 
     try:
-        results = db.pc_search(query, index, namespace, filter)
+        results = db.pc_search(query, filter)
     except Exception as e:
         logger.error("Error: retriving query from Pineonce")
         raise RuntimeError(f"Pinecone API failed: {e}")

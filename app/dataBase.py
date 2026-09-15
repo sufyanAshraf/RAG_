@@ -11,7 +11,7 @@ class dataBase:
     #         cls._instance = super().__new__(cls)
     #     return cls._instance
 
-    def __init__(self, key, index_name = "rag-hotel"):
+    def __init__(self, key, index_name = "rag-hotel", namespace = "services-providers" ):
         # if not hasattr(self, "index"):
         #     self.index = None
 
@@ -20,6 +20,7 @@ class dataBase:
         self.key = key
 
         self.index_name = index_name
+        self.namespace = namespace
 
         try:
             self.pc = Pinecone(api_key=self.key) #connection
@@ -28,6 +29,17 @@ class dataBase:
             raise Exception(f"Failed to initialize pinecone: {e}")
         
         logger.info("Pinecone Successfully connected")
+
+        self.index_flag = self.create_index()
+
+        try:
+            self.index = self.get_index()
+        except Exception as e:
+            logger.error(f"Error pinecone index: {e}")
+            raise Exception(f"Failed to get pinecone index: {e}")
+
+    def get_index_flag(self):
+        return self.index_flag
         
 
     def create_index(self):
@@ -58,10 +70,19 @@ class dataBase:
         index = self.pc.Index(self.index_name)
         return index
 
-    def pc_search(self, query, index, namespace, filter):
+    def initial_upsert(self, records):
+        # Pinecone recommends batches of ~96 records or fewer for upsert_records
+        batch_size = 90 
+    
+        for start in range(0, len(records), batch_size):
+            batch = records[start:start + batch_size]
+            self.index.upsert_records(records=batch, namespace=self.namespace)
+    
 
-        results = index.search(
-            namespace=namespace,
+    def pc_search(self, query, filter):
+
+        results = self.index.search(
+            namespace=self.namespace,
             query={
                 "top_k": 5,
                 "inputs": {"text": query},

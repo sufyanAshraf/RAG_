@@ -444,3 +444,42 @@
 2026-09-12 17:26:32,142 | INFO | root | main.py | chat | 38 | Successfull query database
 2026-09-12 17:26:32,539 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
 2026-09-12 17:26:32,540 | INFO | root | main.py | chat | 54 | Successfull response
+2026-09-15 11:57:25,296 | INFO | root | appInitlize.py | read_api_key_from_config | 14 | Reading API key from config file
+2026-09-15 11:57:26,332 | INFO | root | dataBase.py | __init__ | 31 | Pinecone Successfully connected
+2026-09-15 11:57:26,394 | INFO | pinecone.client.indexes | indexes.py | describe | 231 | Describing index 'rag-hotel'
+2026-09-15 11:57:27,674 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel "HTTP/1.1 200 OK"
+2026-09-15 11:57:27,676 | INFO | root | dataBase.py | create_index | 61 | Index already exist
+2026-09-15 11:57:27,991 | INFO | pinecone.index | __init__.py | __init__ | 195 | Index client created for host https://rag-hotel-esaxznd.svc.aped-4627-b74a.pinecone.io
+2026-09-15 11:57:29,581 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 11:57:29,599 | INFO | pinecone.index | __init__.py | search | 1490 | Searching namespace 'services-providers' with top_k=5
+2026-09-15 11:57:31,095 | INFO | root | main.py | chat | 36 | Successfull query database
+2026-09-15 11:57:31,504 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 11:57:31,505 | INFO | root | main.py | chat | 52 | Successfull response
+2026-09-15 11:59:50,070 | INFO | root | appInitlize.py | read_api_key_from_config | 14 | Reading API key from config file
+2026-09-15 11:59:50,858 | INFO | root | dataBase.py | __init__ | 31 | Pinecone Successfully connected
+2026-09-15 11:59:50,858 | INFO | pinecone.client.indexes | indexes.py | describe | 231 | Describing index 'rag-hotel'
+2026-09-15 11:59:51,998 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel "HTTP/1.1 404 Not Found"
+2026-09-15 11:59:51,999 | INFO | pinecone.client.indexes | indexes.py | create_for_model | 707 | Creating integrated index name='rag-hotel'
+2026-09-15 11:59:53,737 | INFO | pinecone.client.indexes | indexes.py | describe | 231 | Describing index 'rag-hotel'
+2026-09-15 11:59:54,458 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel "HTTP/1.1 200 OK"
+2026-09-15 11:59:59,460 | INFO | pinecone.client.indexes | indexes.py | describe | 231 | Describing index 'rag-hotel'
+2026-09-15 12:00:00,387 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel "HTTP/1.1 200 OK"
+2026-09-15 12:00:00,388 | INFO | root | dataBase.py | create_index | 59 | Index created
+2026-09-15 12:00:00,651 | INFO | pinecone.index | __init__.py | __init__ | 195 | Index client created for host https://rag-hotel-esaxznd.svc.aped-4627-b74a.pinecone.io
+2026-09-15 12:00:00,706 | INFO | pinecone.index | __init__.py | upsert_records | 653 | Upserting 30 records into namespace 'services-providers' (NDJSON)
+2026-09-15 12:00:03,125 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 12:00:03,127 | INFO | pinecone.index | __init__.py | search | 1490 | Searching namespace 'services-providers' with top_k=5
+2026-09-15 12:00:03,519 | INFO | root | main.py | chat | 36 | Successfull query database
+2026-09-15 12:00:03,917 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 12:00:03,919 | INFO | root | main.py | chat | 52 | Successfull response
+2026-09-15 12:00:55,799 | INFO | root | appInitlize.py | read_api_key_from_config | 14 | Reading API key from config file
+2026-09-15 12:00:56,562 | INFO | root | dataBase.py | __init__ | 31 | Pinecone Successfully connected
+2026-09-15 12:00:56,563 | INFO | pinecone.client.indexes | indexes.py | describe | 231 | Describing index 'rag-hotel'
+2026-09-15 12:00:57,620 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel "HTTP/1.1 200 OK"
+2026-09-15 12:00:57,621 | INFO | root | dataBase.py | create_index | 61 | Index already exist
+2026-09-15 12:00:57,882 | INFO | pinecone.index | __init__.py | __init__ | 195 | Index client created for host https://rag-hotel-esaxznd.svc.aped-4627-b74a.pinecone.io
+2026-09-15 12:00:59,068 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 12:00:59,070 | INFO | pinecone.index | __init__.py | search | 1490 | Searching namespace 'services-providers' with top_k=5
+2026-09-15 12:01:00,093 | INFO | root | main.py | chat | 36 | Successfull query database
+2026-09-15 12:01:00,515 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 12:01:00,518 | INFO | root | main.py | chat | 52 | Successfull response
