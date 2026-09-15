@@ -1,5 +1,11 @@
 from .logger import logger
 
+def format_history(history):
+    return "\n".join(
+        f"User: {turn.query}\nAssistant: {turn.response}"
+        for turn in history
+    )
+
 def create_context(results):
     hits = results["result"]["hits"]
 
@@ -24,16 +30,22 @@ def create_context(results):
     return context
 
 
-def getPrompt(query, results):
+def getPrompt(query, results, history=None):
     context = create_context(results)
     if not context:
         logger.error("Error in context")
         return None
 
+    conversation = format_history(history or [])
+    conversation_section = conversation or "No previous conversation."
+
     full_prompt = f"""
         You are a helpful AI assistant.
 
         Answer the user's question using the provided context.
+
+        Previous conversation:
+        {conversation_section}
 
         Context:
         {context}

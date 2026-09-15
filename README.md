@@ -62,6 +62,22 @@ Open:
 
 - http://127.0.0.1:8000/docs
 
+## Conversation context
+
+The API is stateless. Send previous turns in `history` with each follow-up request:
+
+```json
+{
+	"query": "What about one with a pool?",
+	"history": [
+		{"role": "user", "content": "Find a hotel in Helsinki"},
+		{"role": "assistant", "content": "Here are some options."}
+	]
+}
+```
+
+History is limited to 20 messages, and each message is limited to 2,000 characters. Previous user messages are used for retrieval; both user and assistant messages are included when generating the answer. The response remains `{ "response": "..." }`.
+
 ## Notes
 
 - API keys are kept in local config files only.

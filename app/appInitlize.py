@@ -22,6 +22,9 @@ class chatRequest(BaseModel):
 class chatResponse(BaseModel):
     response: str
 
+class ConversationTurn(BaseModel):
+    query: str
+    response: str
 
 def initlize_db_and_llm():
 
@@ -42,3 +45,10 @@ def initlize_db_and_llm():
         db.initial_upsert(prep_data)
 
     return db, model
+
+def build_retrieval_query(query, history):
+    previous_turns = [
+        f"User: {turn.query}\nAssistant: {turn.response}"
+        for turn in history
+    ]
+    return "\n".join(previous_turns + [f"User: {query}"])

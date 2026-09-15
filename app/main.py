@@ -1,20 +1,21 @@
-from .appInitlize import*
+from .appInitlize import* 
 
 
 app = FastAPI(title="RAG API", version="0.1.0") 
 db, model =initlize_db_and_llm()
-
+history: list[ConversationTurn] = []
 
 @app.post("/", response_model=chatResponse)
 async def chat(request: chatRequest) -> chatResponse:
     
     # create filter
     query = request.query
+    retrieval_query = build_retrieval_query(query, history)
     filter_obj = queryCreator()
-    filter = filter_obj.create_query(model, query)
+    filter = filter_obj.create_query(model, retrieval_query)
 
     try:
-        results = db.pc_search(query, filter)
+        results = db.pc_search(retrieval_query, filter)
     except Exception as e:
         logger.error("Error: retriving query from Pineonce")
         raise RuntimeError(f"Pinecone API failed: {e}")
@@ -22,7 +23,7 @@ async def chat(request: chatRequest) -> chatResponse:
     logger.info("Successfull query database") 
 
     # create prompt
-    full_prompt = getPrompt(query, results)
+    full_prompt = getPrompt(query, results, history)
 
     if not full_prompt:
         logger.error("Error in context")
@@ -39,6 +40,8 @@ async def chat(request: chatRequest) -> chatResponse:
     except Exception as e:
         logger.error(f"Groq API failed: {e}")
         raise RuntimeError(f"Groq API failed: {e}")
+
+    history.append(ConversationTurn(query=query, response=response))
  
     return chatResponse(response=response) 
 
