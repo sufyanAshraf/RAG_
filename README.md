@@ -82,7 +82,7 @@ flowchart TD
     B --> C[HistoryManager]
 
     subgraph QUERY["Query Processing"]
-        C --> D[Groq Query Parser]
+        C --> D[LLM Query Parser]
         D --> E[Structured Pinecone Filters]
         C --> F[History-Aware Retrieval Query]
     end
@@ -106,14 +106,15 @@ flowchart TD
     O --> L
 
     subgraph GENERATION["Answer Generation"]
-        L --> M[Groq Answer Model]
+        L --> M[LLM Answer Model]
         M --> N[Response]
     end
 
     N --> P[Add Turn to HistoryManager]
+	N --> T[User]
     P --> Q{Window Exceeds 6 Turns?}
 
-    Q -- Yes --> R[Groq Summarization Model]
+    Q -- Yes --> R[LLM Summarization Model]
     R --> S[Update Rolling Summary]
     S --> O
 
