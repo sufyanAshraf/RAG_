@@ -120,7 +120,50 @@ flowchart TD
 	N --> T[User]
     Q -- No --> O
 ```
+```mermaid
+flowchart TD
 
+    A[User Query] --> B[FastAPI]
+    B --> C[HistoryManager]
+
+    subgraph QUERY["Query Processing"]
+        C --> D[LLM Query Parser]
+        D --> E[Structured Pinecone Filters]
+        C --> F[History-Aware Retrieval Query]
+    end
+
+    subgraph RETRIEVAL["Hybrid Retrieval"]
+        E --> G[Dense Vector Search]
+        E --> H[BM25 Full-Text Search]
+        F --> G
+        F --> H
+        G --> I[Merge & Deduplicate]
+        H --> I
+        I --> J[Cross-Encoder Reranking]
+        J --> K[Retrieved Business Context]
+    end
+
+    subgraph CONTEXT["Conversation Context"]
+        C --> O[Conversation Context & Rolling Summary]
+    end
+
+    K --> L[Grounded Answer Prompt]
+    O --> L
+
+    subgraph GENERATION["Answer Generation"]
+        L --> M[LLM Answer Model]
+        M --> N[Response]
+    end
+
+    N --> P[Add Turn to HistoryManager]
+    P --> Q{Window Exceeds 6 Turns?}
+
+    Q -- Yes --> R[LLM Summarization Model]
+    R --> S[Update Rolling Summary]
+    S --> O
+
+    Q -- No --> O
+```
 ## Technology stack
 
 - Python
