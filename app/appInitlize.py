@@ -21,3 +21,24 @@ class chatRequest(BaseModel):
 
 class chatResponse(BaseModel):
     response: str
+
+
+def initlize_db_and_llm():
+
+    groq_api_key, pinecone_api_key = read_api_key_from_config()
+    
+    model = GroqModel(groq_api_key)   
+    
+    # Store the vectors in the database    
+    db = dataBase(pinecone_api_key)
+    index_flag = db.get_index_flag() 
+    
+    if index_flag == False:
+        read_data = readData()
+        data = read_data.readjson()
+    
+        # Create embeddings for the data
+        prep_data = data_prepration_for_embadddings(data)
+        db.initial_upsert(prep_data)
+
+    return db, model
