@@ -95,7 +95,12 @@ flowchart LR
 		O --> L
 		L --> M[Groq answer model]
 		M --> N[Response]
-		M --> C
+		N --> P[Add turn to HistoryManager]
+		P --> Q{Window exceeds six turns?}
+		Q -- Yes --> R[Groq summarization model]
+		R --> S[Update rolling summary]
+		S --> O
+		Q -- No --> O
 ```
 
 ## Technology stack
