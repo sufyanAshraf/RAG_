@@ -12,7 +12,7 @@ async def chat(request: chatRequest) -> chatResponse:
     query = request.query
     retrieval_query = build_retrieval_query(query, history)
     filter_obj = queryCreator()
-    filter = filter_obj.create_query(model, retrieval_query)
+    filter = filter_obj.create_query(model, query)
 
     try:
         results = db.pc_search(retrieval_query, filter)
