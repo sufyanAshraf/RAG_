@@ -76,31 +76,48 @@ Conversation turns are currently maintained by the server-side `HistoryManager`.
 ## Request flow
 
 ```mermaid
-flowchart LR
-		A[User query] --> B[FastAPI]
-		B --> C[HistoryManager]
-		subgraph Retrieval[Hybrid retrieval]
-			D[Groq query parser] --> E[Metadata filters]
-			F[History-aware query] --> G[Dense search]
-			F --> H[BM25 search]
-			E --> G
-			E --> H
-			G --> I[Merge and deduplicate]
-			H --> I
-			I --> J[Rerank]
-		end
-		C --> D
-		C --> F
-		subgraph Memory[Conversation memory]
-			O[Conversation context and summary]
-			P[Add response to history] --> Q{More than six turns?}
-			Q -- Yes --> R[Groq summary model] --> S[Update rolling summary] --> O
-			Q -- No --> O
-		end
-		J --> K[Retrieved context]
-		K --> L[Grounded answer prompt]
-		O --> L
-		L --> M[Groq answer model] --> N[Response] --> P
+flowchart TD
+
+    A[User Query] --> B[FastAPI]
+    B --> C[HistoryManager]
+
+    subgraph QUERY["Query Processing"]
+        C --> D[Groq Query Parser]
+        D --> E[Structured Pinecone Filters]
+        C --> F[History-Aware Retrieval Query]
+    end
+
+    subgraph RETRIEVAL["Hybrid Retrieval"]
+        E --> G[Dense Vector Search]
+        E --> H[BM25 Full-Text Search]
+        F --> G
+        F --> H
+        G --> I[Merge & Deduplicate]
+        H --> I
+        I --> J[Cross-Encoder Reranking]
+        J --> K[Retrieved Business Context]
+    end
+
+    subgraph CONTEXT["Conversation Context"]
+        C --> O[Conversation Context & Rolling Summary]
+    end
+
+    K --> L[Grounded Answer Prompt]
+    O --> L
+
+    subgraph GENERATION["Answer Generation"]
+        L --> M[Groq Answer Model]
+        M --> N[Response]
+    end
+
+    N --> P[Add Turn to HistoryManager]
+    P --> Q{Window Exceeds 6 Turns?}
+
+    Q -- Yes --> R[Groq Summarization Model]
+    R --> S[Update Rolling Summary]
+    S --> O
+
+    Q -- No --> O
 ```
 
 ## Technology stack
