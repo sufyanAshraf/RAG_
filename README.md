@@ -116,8 +116,7 @@ flowchart TD
 		Q -- Yes --> R[LLM Summarization Model]
 		R --> S[Update Rolling Summary]
 		S --> O
-	end
-	N --> 
+	end 
     Q -- No --> O
 ```
  
