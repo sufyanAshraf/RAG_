@@ -15,13 +15,13 @@ async def chat(request: chatRequest) -> chatResponse:
     filter = filter_obj.create_query(model, retrieval_query)
 
     try:
-        results = db.pc_search(retrieval_query, filter)
+        results = db.hybrid_search(retrieval_query, filter)
     except Exception as e:
         logger.error("Error: retriving query from Pineonce")
         raise RuntimeError(f"Pinecone API failed: {e}")
  
     logger.info("Successfull query database") 
-
+     
     # create prompt
     full_prompt = getPrompt(query, results, history_manager.get_context())
 

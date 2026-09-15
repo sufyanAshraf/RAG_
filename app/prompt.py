@@ -9,23 +9,31 @@ def format_history(history):
 def create_context(results):
     hits = results["result"]["hits"]
 
-    context = ""
+    context = "" 
 
     for hit in hits:
         fields = hit.get("fields", {})
 
         context += f"""
-            Name: {fields.get('name', '')}
-            Category: {fields.get('Category', '')}
-            City: {fields.get('city', '')}
-            Region: {fields.get('region', '')}
-            Rating: {fields.get('rating', '')}
-            Distance: {fields.get('distance', '')}
-            Services: {fields.get('services', '')}
-            Description: {fields.get('description', '')}
+        {fields.get('chunk_text', '')}
+        ---
+        """
 
-            ---
-            """
+    # for hit in hits:
+    #     fields = hit.get("fields", {})
+
+    #     context += f"""
+    #         Name: {fields.get('name', '')}
+    #         Category: {fields.get('Category', '')}
+    #         City: {fields.get('city', '')}
+    #         Region: {fields.get('region', '')}
+    #         Rating: {fields.get('rating', '')}
+    #         Distance: {fields.get('distance', '')}
+    #         Services: {fields.get('services', '')}
+    #         Description: {fields.get('description', '')}
+
+    #         ---
+    #         """
     # logger.info("context:" + context)  
     return context
 

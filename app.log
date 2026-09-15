@@ -875,3 +875,365 @@
 2026-09-15 17:16:04,099 | INFO | root | main.py | chat | 39 | Successfull response
 2026-09-15 17:16:04,571 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
 2026-09-15 17:16:04,572 | INFO | root | history_manager.py | _fold_into_summary | 50 | Rolled up one turn into rolling summary
+2026-09-15 19:51:32,208 | INFO | root | appInitlize.py | read_api_key_from_config | 15 | Reading API key from config file
+2026-09-15 19:51:33,174 | INFO | root | dataBase.py | __init__ | 30 | Pinecone Successfully connected
+2026-09-15 19:51:33,227 | INFO | pinecone.client.indexes | indexes.py | describe | 231 | Describing index 'rag-hotel'
+2026-09-15 19:51:34,187 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel "HTTP/1.1 404 Not Found"
+2026-09-15 19:51:34,189 | INFO | pinecone.client.indexes | indexes.py | create_for_model | 707 | Creating integrated index name='rag-hotel'
+2026-09-15 19:51:36,135 | INFO | pinecone.client.indexes | indexes.py | describe | 231 | Describing index 'rag-hotel'
+2026-09-15 19:51:36,371 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel "HTTP/1.1 200 OK"
+2026-09-15 19:51:41,372 | INFO | pinecone.client.indexes | indexes.py | describe | 231 | Describing index 'rag-hotel'
+2026-09-15 19:51:42,353 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel "HTTP/1.1 200 OK"
+2026-09-15 19:51:42,354 | INFO | root | dataBase.py | create_index | 70 | Index created
+2026-09-15 19:51:42,354 | INFO | pinecone.client.indexes | indexes.py | describe | 231 | Describing index 'rag-hotel-fts'
+2026-09-15 19:51:42,868 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel-fts "HTTP/1.1 404 Not Found"
+2026-09-15 19:51:42,868 | ERROR | root | dataBase.py | create_fts_index | 103 | Error pinecone fts index creation failed: create_index() got unexpected keyword argument(s): ['schema']. create_index() is the legacy backwards-compatibility shim and only accepts: name, spec, dimension, metric, vector_type, deletion_protection, tags, timeout. Use pc.indexes.create() for the 2026-07 schema=/deployment=/read_capacity=/cmek_id= surface.
+2026-09-15 19:56:02,108 | INFO | root | appInitlize.py | read_api_key_from_config | 15 | Reading API key from config file
+2026-09-15 19:56:03,102 | INFO | root | dataBase.py | __init__ | 30 | Pinecone Successfully connected
+2026-09-15 19:56:03,160 | INFO | pinecone.client.indexes | indexes.py | describe | 231 | Describing index 'rag-hotel'
+2026-09-15 19:56:04,211 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel "HTTP/1.1 200 OK"
+2026-09-15 19:56:04,220 | INFO | root | dataBase.py | create_index | 72 | Index already exist
+2026-09-15 19:56:04,221 | INFO | pinecone.client.indexes | indexes.py | describe | 231 | Describing index 'rag-hotel-fts'
+2026-09-15 19:56:04,879 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel-fts "HTTP/1.1 404 Not Found"
+2026-09-15 19:56:04,881 | ERROR | root | dataBase.py | create_fts_index | 109 | Error pinecone fts index creation failed: name 'SchemaBuilder' is not defined
+2026-09-15 19:56:44,309 | INFO | root | appInitlize.py | read_api_key_from_config | 15 | Reading API key from config file
+2026-09-15 19:56:45,210 | INFO | root | dataBase.py | __init__ | 30 | Pinecone Successfully connected
+2026-09-15 19:56:45,261 | INFO | pinecone.client.indexes | indexes.py | describe | 231 | Describing index 'rag-hotel'
+2026-09-15 19:56:46,382 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel "HTTP/1.1 200 OK"
+2026-09-15 19:56:46,393 | INFO | root | dataBase.py | create_index | 72 | Index already exist
+2026-09-15 19:56:46,395 | INFO | pinecone.client.indexes | indexes.py | describe | 231 | Describing index 'rag-hotel-fts'
+2026-09-15 19:56:47,197 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel-fts "HTTP/1.1 404 Not Found"
+2026-09-15 19:56:47,200 | INFO | pinecone.client.indexes | indexes.py | create | 588 | Creating index name='rag-hotel-fts'
+2026-09-15 19:56:48,532 | INFO | pinecone.client.indexes | indexes.py | describe | 231 | Describing index 'rag-hotel-fts'
+2026-09-15 19:56:49,146 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel-fts "HTTP/1.1 200 OK"
+2026-09-15 19:56:54,148 | INFO | pinecone.client.indexes | indexes.py | describe | 231 | Describing index 'rag-hotel-fts'
+2026-09-15 19:56:55,192 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel-fts "HTTP/1.1 200 OK"
+2026-09-15 19:56:55,195 | INFO | root | dataBase.py | create_fts_index | 104 | FTS (BM25) index created
+2026-09-15 19:56:56,310 | INFO | pinecone.index | __init__.py | __init__ | 195 | Index client created for host https://rag-hotel-esaxznd.svc.aped-4627-b74a.pinecone.io
+2026-09-15 19:56:57,388 | INFO | pinecone.index | __init__.py | __init__ | 195 | Index client created for host https://rag-hotel-fts-esaxznd.svc.aped-4627-b74a.pinecone.io
+2026-09-15 19:57:38,080 | INFO | root | appInitlize.py | read_api_key_from_config | 15 | Reading API key from config file
+2026-09-15 19:57:38,936 | INFO | root | dataBase.py | __init__ | 30 | Pinecone Successfully connected
+2026-09-15 19:57:38,973 | INFO | pinecone.client.indexes | indexes.py | describe | 231 | Describing index 'rag-hotel'
+2026-09-15 19:57:39,979 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel "HTTP/1.1 200 OK"
+2026-09-15 19:57:39,990 | INFO | root | dataBase.py | create_index | 72 | Index already exist
+2026-09-15 19:57:39,991 | INFO | pinecone.client.indexes | indexes.py | describe | 231 | Describing index 'rag-hotel-fts'
+2026-09-15 19:57:40,411 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel-fts "HTTP/1.1 200 OK"
+2026-09-15 19:57:40,413 | INFO | root | dataBase.py | create_fts_index | 106 | FTS index already exist
+2026-09-15 19:57:41,649 | INFO | pinecone.index | __init__.py | __init__ | 195 | Index client created for host https://rag-hotel-esaxznd.svc.aped-4627-b74a.pinecone.io
+2026-09-15 19:57:42,752 | INFO | pinecone.index | __init__.py | __init__ | 195 | Index client created for host https://rag-hotel-fts-esaxznd.svc.aped-4627-b74a.pinecone.io
+2026-09-15 19:59:13,994 | INFO | root | appInitlize.py | read_api_key_from_config | 15 | Reading API key from config file
+2026-09-15 19:59:14,821 | INFO | root | dataBase.py | __init__ | 30 | Pinecone Successfully connected
+2026-09-15 19:59:14,862 | INFO | pinecone.client.indexes | indexes.py | describe | 231 | Describing index 'rag-hotel'
+2026-09-15 19:59:16,092 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel "HTTP/1.1 200 OK"
+2026-09-15 19:59:16,106 | INFO | root | dataBase.py | create_index | 72 | Index already exist
+2026-09-15 19:59:16,107 | INFO | pinecone.client.indexes | indexes.py | describe | 231 | Describing index 'rag-hotel-fts'
+2026-09-15 19:59:16,496 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel-fts "HTTP/1.1 200 OK"
+2026-09-15 19:59:16,498 | INFO | root | dataBase.py | create_fts_index | 106 | FTS index already exist
+2026-09-15 19:59:17,731 | INFO | pinecone.index | __init__.py | __init__ | 195 | Index client created for host https://rag-hotel-esaxznd.svc.aped-4627-b74a.pinecone.io
+2026-09-15 19:59:18,869 | INFO | pinecone.index | __init__.py | __init__ | 195 | Index client created for host https://rag-hotel-fts-esaxznd.svc.aped-4627-b74a.pinecone.io
+2026-09-15 20:00:35,594 | INFO | root | appInitlize.py | read_api_key_from_config | 15 | Reading API key from config file
+2026-09-15 20:00:36,418 | INFO | root | dataBase.py | __init__ | 30 | Pinecone Successfully connected
+2026-09-15 20:00:36,461 | INFO | pinecone.client.indexes | indexes.py | describe | 231 | Describing index 'rag-hotel'
+2026-09-15 20:00:37,574 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel "HTTP/1.1 200 OK"
+2026-09-15 20:00:37,577 | INFO | root | dataBase.py | create_index | 72 | Index already exist
+2026-09-15 20:00:37,578 | INFO | pinecone.client.indexes | indexes.py | describe | 231 | Describing index 'rag-hotel-fts'
+2026-09-15 20:00:38,320 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel-fts "HTTP/1.1 200 OK"
+2026-09-15 20:00:38,321 | INFO | root | dataBase.py | create_fts_index | 106 | FTS index already exist
+2026-09-15 20:00:38,605 | INFO | pinecone.index | __init__.py | __init__ | 195 | Index client created for host https://rag-hotel-esaxznd.svc.aped-4627-b74a.pinecone.io
+2026-09-15 20:00:38,843 | INFO | pinecone.index | __init__.py | __init__ | 195 | Index client created for host https://rag-hotel-fts-esaxznd.svc.aped-4627-b74a.pinecone.io
+2026-09-15 20:01:43,344 | INFO | root | appInitlize.py | read_api_key_from_config | 15 | Reading API key from config file
+2026-09-15 20:01:44,237 | INFO | root | dataBase.py | __init__ | 30 | Pinecone Successfully connected
+2026-09-15 20:01:44,281 | INFO | pinecone.client.indexes | indexes.py | describe | 231 | Describing index 'rag-hotel'
+2026-09-15 20:01:45,169 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel "HTTP/1.1 404 Not Found"
+2026-09-15 20:01:45,173 | INFO | pinecone.client.indexes | indexes.py | create_for_model | 707 | Creating integrated index name='rag-hotel'
+2026-09-15 20:01:47,137 | INFO | pinecone.client.indexes | indexes.py | describe | 231 | Describing index 'rag-hotel'
+2026-09-15 20:01:47,434 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel "HTTP/1.1 200 OK"
+2026-09-15 20:01:52,434 | INFO | pinecone.client.indexes | indexes.py | describe | 231 | Describing index 'rag-hotel'
+2026-09-15 20:01:53,374 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel "HTTP/1.1 200 OK"
+2026-09-15 20:01:53,376 | INFO | root | dataBase.py | create_index | 70 | Index created
+2026-09-15 20:01:53,377 | INFO | pinecone.client.indexes | indexes.py | describe | 231 | Describing index 'rag-hotel-fts'
+2026-09-15 20:01:53,880 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel-fts "HTTP/1.1 404 Not Found"
+2026-09-15 20:01:53,883 | INFO | pinecone.client.indexes | indexes.py | create | 588 | Creating index name='rag-hotel-fts'
+2026-09-15 20:01:55,562 | INFO | pinecone.client.indexes | indexes.py | describe | 231 | Describing index 'rag-hotel-fts'
+2026-09-15 20:01:56,041 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel-fts "HTTP/1.1 200 OK"
+2026-09-15 20:02:01,042 | INFO | pinecone.client.indexes | indexes.py | describe | 231 | Describing index 'rag-hotel-fts'
+2026-09-15 20:02:02,082 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel-fts "HTTP/1.1 200 OK"
+2026-09-15 20:02:02,084 | INFO | root | dataBase.py | create_fts_index | 104 | FTS (BM25) index created
+2026-09-15 20:02:02,361 | INFO | pinecone.index | __init__.py | __init__ | 195 | Index client created for host https://rag-hotel-esaxznd.svc.aped-4627-b74a.pinecone.io
+2026-09-15 20:02:02,631 | INFO | pinecone.index | __init__.py | __init__ | 195 | Index client created for host https://rag-hotel-fts-esaxznd.svc.aped-4627-b74a.pinecone.io
+2026-09-15 20:02:02,670 | INFO | pinecone.index | __init__.py | upsert_records | 653 | Upserting 30 records into namespace 'services-providers' (NDJSON)
+2026-09-15 20:03:35,076 | INFO | root | appInitlize.py | read_api_key_from_config | 15 | Reading API key from config file
+2026-09-15 20:03:36,000 | INFO | root | dataBase.py | __init__ | 30 | Pinecone Successfully connected
+2026-09-15 20:03:36,041 | INFO | pinecone.client.indexes | indexes.py | describe | 231 | Describing index 'rag-hotel'
+2026-09-15 20:03:37,162 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel "HTTP/1.1 200 OK"
+2026-09-15 20:03:37,171 | INFO | root | dataBase.py | create_index | 72 | Index already exist
+2026-09-15 20:03:37,171 | INFO | pinecone.client.indexes | indexes.py | describe | 231 | Describing index 'rag-hotel-fts'
+2026-09-15 20:03:37,894 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel-fts "HTTP/1.1 200 OK"
+2026-09-15 20:03:37,897 | INFO | root | dataBase.py | create_fts_index | 106 | FTS index already exist
+2026-09-15 20:03:38,897 | INFO | pinecone.index | __init__.py | __init__ | 195 | Index client created for host https://rag-hotel-esaxznd.svc.aped-4627-b74a.pinecone.io
+2026-09-15 20:03:40,016 | INFO | pinecone.index | __init__.py | __init__ | 195 | Index client created for host https://rag-hotel-fts-esaxznd.svc.aped-4627-b74a.pinecone.io
+2026-09-15 20:04:15,339 | INFO | root | appInitlize.py | read_api_key_from_config | 15 | Reading API key from config file
+2026-09-15 20:04:16,300 | INFO | root | dataBase.py | __init__ | 30 | Pinecone Successfully connected
+2026-09-15 20:04:16,346 | INFO | pinecone.client.indexes | indexes.py | describe | 231 | Describing index 'rag-hotel'
+2026-09-15 20:04:17,361 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel "HTTP/1.1 404 Not Found"
+2026-09-15 20:04:17,362 | INFO | pinecone.client.indexes | indexes.py | create_for_model | 707 | Creating integrated index name='rag-hotel'
+2026-09-15 20:04:19,196 | INFO | pinecone.client.indexes | indexes.py | describe | 231 | Describing index 'rag-hotel'
+2026-09-15 20:04:19,436 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel "HTTP/1.1 200 OK"
+2026-09-15 20:04:19,437 | INFO | root | dataBase.py | create_index | 70 | Index created
+2026-09-15 20:04:19,437 | INFO | pinecone.client.indexes | indexes.py | describe | 231 | Describing index 'rag-hotel-fts'
+2026-09-15 20:04:19,809 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel-fts "HTTP/1.1 404 Not Found"
+2026-09-15 20:04:19,811 | INFO | pinecone.client.indexes | indexes.py | create | 588 | Creating index name='rag-hotel-fts'
+2026-09-15 20:04:21,043 | INFO | pinecone.client.indexes | indexes.py | describe | 231 | Describing index 'rag-hotel-fts'
+2026-09-15 20:04:21,304 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel-fts "HTTP/1.1 200 OK"
+2026-09-15 20:04:26,305 | INFO | pinecone.client.indexes | indexes.py | describe | 231 | Describing index 'rag-hotel-fts'
+2026-09-15 20:04:27,385 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel-fts "HTTP/1.1 200 OK"
+2026-09-15 20:04:27,387 | INFO | root | dataBase.py | create_fts_index | 104 | FTS (BM25) index created
+2026-09-15 20:04:27,659 | INFO | pinecone.index | __init__.py | __init__ | 195 | Index client created for host https://rag-hotel-esaxznd.svc.aped-4627-b74a.pinecone.io
+2026-09-15 20:04:27,892 | INFO | pinecone.index | __init__.py | __init__ | 195 | Index client created for host https://rag-hotel-fts-esaxznd.svc.aped-4627-b74a.pinecone.io
+2026-09-15 20:04:27,894 | INFO | pinecone.index | __init__.py | upsert_records | 653 | Upserting 30 records into namespace 'services-providers' (NDJSON)
+2026-09-15 20:04:29,848 | INFO | pinecone.client.documents | documents.py | upsert | 155 | Upserting 30 documents into namespace 'services-providers'
+2026-09-15 20:05:30,845 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 20:06:48,504 | INFO | root | appInitlize.py | read_api_key_from_config | 15 | Reading API key from config file
+2026-09-15 20:06:49,386 | INFO | root | dataBase.py | __init__ | 30 | Pinecone Successfully connected
+2026-09-15 20:06:49,427 | INFO | pinecone.client.indexes | indexes.py | describe | 231 | Describing index 'rag-hotel'
+2026-09-15 20:06:50,665 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel "HTTP/1.1 200 OK"
+2026-09-15 20:06:50,668 | INFO | root | dataBase.py | create_index | 72 | Index already exist
+2026-09-15 20:06:50,668 | INFO | pinecone.client.indexes | indexes.py | describe | 231 | Describing index 'rag-hotel-fts'
+2026-09-15 20:06:51,567 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel-fts "HTTP/1.1 200 OK"
+2026-09-15 20:06:51,569 | INFO | root | dataBase.py | create_fts_index | 106 | FTS index already exist
+2026-09-15 20:06:51,815 | INFO | pinecone.index | __init__.py | __init__ | 195 | Index client created for host https://rag-hotel-esaxznd.svc.aped-4627-b74a.pinecone.io
+2026-09-15 20:06:52,060 | INFO | pinecone.index | __init__.py | __init__ | 195 | Index client created for host https://rag-hotel-fts-esaxznd.svc.aped-4627-b74a.pinecone.io
+2026-09-15 20:07:08,847 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 20:07:08,865 | INFO | pinecone.index | __init__.py | search | 1490 | Searching namespace 'services-providers' with top_k=5
+2026-09-15 20:07:10,315 | INFO | pinecone.client.documents | documents.py | search | 364 | Searching documents in namespace 'services-providers' with top_k=5
+2026-09-15 20:07:11,530 | ERROR | root | main.py | chat | 20 | Error: retriving query from Pineonce
+2026-09-15 20:08:54,663 | INFO | root | appInitlize.py | read_api_key_from_config | 15 | Reading API key from config file
+2026-09-15 20:08:55,547 | INFO | root | dataBase.py | __init__ | 30 | Pinecone Successfully connected
+2026-09-15 20:08:55,587 | INFO | pinecone.client.indexes | indexes.py | describe | 231 | Describing index 'rag-hotel'
+2026-09-15 20:08:56,828 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel "HTTP/1.1 200 OK"
+2026-09-15 20:08:56,831 | INFO | root | dataBase.py | create_index | 72 | Index already exist
+2026-09-15 20:08:56,831 | INFO | pinecone.client.indexes | indexes.py | describe | 231 | Describing index 'rag-hotel-fts'
+2026-09-15 20:08:57,609 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel-fts "HTTP/1.1 200 OK"
+2026-09-15 20:08:57,610 | INFO | root | dataBase.py | create_fts_index | 106 | FTS index already exist
+2026-09-15 20:08:57,844 | INFO | pinecone.index | __init__.py | __init__ | 195 | Index client created for host https://rag-hotel-esaxznd.svc.aped-4627-b74a.pinecone.io
+2026-09-15 20:08:58,076 | INFO | pinecone.index | __init__.py | __init__ | 195 | Index client created for host https://rag-hotel-fts-esaxznd.svc.aped-4627-b74a.pinecone.io
+2026-09-15 20:10:07,799 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 20:10:07,810 | INFO | pinecone.index | __init__.py | search | 1490 | Searching namespace 'services-providers' with top_k=5
+2026-09-15 20:10:09,207 | INFO | pinecone.client.documents | documents.py | search | 364 | Searching documents in namespace 'services-providers' with top_k=5
+2026-09-15 20:10:10,747 | ERROR | root | main.py | chat | 20 | Error: retriving query from Pineonce
+2026-09-15 20:17:51,824 | INFO | root | appInitlize.py | read_api_key_from_config | 15 | Reading API key from config file
+2026-09-15 20:17:52,729 | INFO | root | dataBase.py | __init__ | 30 | Pinecone Successfully connected
+2026-09-15 20:17:52,770 | INFO | pinecone.client.indexes | indexes.py | describe | 231 | Describing index 'rag-hotel'
+2026-09-15 20:17:53,736 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel "HTTP/1.1 200 OK"
+2026-09-15 20:17:53,738 | INFO | root | dataBase.py | create_index | 72 | Index already exist
+2026-09-15 20:17:53,738 | INFO | pinecone.client.indexes | indexes.py | describe | 231 | Describing index 'rag-hotel-fts'
+2026-09-15 20:17:54,555 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel-fts "HTTP/1.1 200 OK"
+2026-09-15 20:17:54,556 | INFO | root | dataBase.py | create_fts_index | 106 | FTS index already exist
+2026-09-15 20:17:54,835 | INFO | pinecone.index | __init__.py | __init__ | 195 | Index client created for host https://rag-hotel-esaxznd.svc.aped-4627-b74a.pinecone.io
+2026-09-15 20:17:55,076 | INFO | pinecone.index | __init__.py | __init__ | 195 | Index client created for host https://rag-hotel-fts-esaxznd.svc.aped-4627-b74a.pinecone.io
+2026-09-15 20:18:00,135 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 20:18:00,158 | INFO | pinecone.index | __init__.py | search | 1490 | Searching namespace 'services-providers' with top_k=5
+2026-09-15 20:18:01,697 | INFO | pinecone.client.documents | documents.py | search | 364 | Searching documents in namespace 'services-providers' with top_k=5
+2026-09-15 20:18:03,061 | INFO | pinecone.client.inference | inference.py | rerank | 449 | Reranking 4 documents with model 'bge-reranker-v2-m3'
+2026-09-15 20:18:04,030 | INFO | root | main.py | chat | 23 | Successfull query database
+2026-09-15 20:21:36,715 | INFO | root | appInitlize.py | read_api_key_from_config | 15 | Reading API key from config file
+2026-09-15 20:21:37,684 | INFO | root | dataBase.py | __init__ | 30 | Pinecone Successfully connected
+2026-09-15 20:21:37,730 | INFO | pinecone.client.indexes | indexes.py | describe | 231 | Describing index 'rag-hotel'
+2026-09-15 20:21:38,863 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel "HTTP/1.1 200 OK"
+2026-09-15 20:21:38,868 | INFO | root | dataBase.py | create_index | 72 | Index already exist
+2026-09-15 20:21:38,868 | INFO | pinecone.client.indexes | indexes.py | describe | 231 | Describing index 'rag-hotel-fts'
+2026-09-15 20:21:39,581 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel-fts "HTTP/1.1 200 OK"
+2026-09-15 20:21:39,582 | INFO | root | dataBase.py | create_fts_index | 106 | FTS index already exist
+2026-09-15 20:21:39,842 | INFO | pinecone.index | __init__.py | __init__ | 195 | Index client created for host https://rag-hotel-esaxznd.svc.aped-4627-b74a.pinecone.io
+2026-09-15 20:21:40,076 | INFO | pinecone.index | __init__.py | __init__ | 195 | Index client created for host https://rag-hotel-fts-esaxznd.svc.aped-4627-b74a.pinecone.io
+2026-09-15 20:21:50,189 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 20:21:50,212 | INFO | pinecone.index | __init__.py | search | 1490 | Searching namespace 'services-providers' with top_k=5
+2026-09-15 20:21:51,624 | INFO | pinecone.client.documents | documents.py | search | 364 | Searching documents in namespace 'services-providers' with top_k=5
+2026-09-15 20:21:52,968 | INFO | pinecone.client.inference | inference.py | rerank | 449 | Reranking 4 documents with model 'bge-reranker-v2-m3'
+2026-09-15 20:21:53,876 | INFO | root | main.py | chat | 23 | Successfull query database
+2026-09-15 20:21:54,189 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 20:21:54,190 | INFO | root | main.py | chat | 39 | Successfull response
+2026-09-15 20:23:13,783 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 20:23:13,786 | INFO | pinecone.index | __init__.py | search | 1490 | Searching namespace 'services-providers' with top_k=5
+2026-09-15 20:23:15,233 | INFO | pinecone.client.documents | documents.py | search | 364 | Searching documents in namespace 'services-providers' with top_k=5
+2026-09-15 20:23:16,355 | INFO | pinecone.client.inference | inference.py | rerank | 449 | Reranking 4 documents with model 'bge-reranker-v2-m3'
+2026-09-15 20:23:17,324 | INFO | root | main.py | chat | 23 | Successfull query database
+2026-09-15 20:23:17,680 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 20:23:17,683 | INFO | root | main.py | chat | 39 | Successfull response
+2026-09-15 20:23:45,541 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 20:23:45,546 | INFO | pinecone.index | __init__.py | search | 1490 | Searching namespace 'services-providers' with top_k=5
+2026-09-15 20:23:46,579 | INFO | pinecone.client.documents | documents.py | search | 364 | Searching documents in namespace 'services-providers' with top_k=5
+2026-09-15 20:23:47,607 | INFO | pinecone.client.inference | inference.py | rerank | 449 | Reranking 4 documents with model 'bge-reranker-v2-m3'
+2026-09-15 20:23:48,945 | INFO | root | main.py | chat | 23 | Successfull query database
+2026-09-15 20:23:49,318 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 20:23:49,321 | INFO | root | main.py | chat | 39 | Successfull response
+2026-09-15 20:24:43,160 | INFO | root | appInitlize.py | read_api_key_from_config | 15 | Reading API key from config file
+2026-09-15 20:24:44,082 | INFO | root | dataBase.py | __init__ | 30 | Pinecone Successfully connected
+2026-09-15 20:24:44,137 | INFO | pinecone.client.indexes | indexes.py | describe | 231 | Describing index 'rag-hotel'
+2026-09-15 20:24:45,261 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel "HTTP/1.1 200 OK"
+2026-09-15 20:24:45,264 | INFO | root | dataBase.py | create_index | 72 | Index already exist
+2026-09-15 20:24:45,265 | INFO | pinecone.client.indexes | indexes.py | describe | 231 | Describing index 'rag-hotel-fts'
+2026-09-15 20:24:46,151 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel-fts "HTTP/1.1 200 OK"
+2026-09-15 20:24:46,152 | INFO | root | dataBase.py | create_fts_index | 106 | FTS index already exist
+2026-09-15 20:24:46,358 | INFO | pinecone.index | __init__.py | __init__ | 195 | Index client created for host https://rag-hotel-esaxznd.svc.aped-4627-b74a.pinecone.io
+2026-09-15 20:24:46,615 | INFO | pinecone.index | __init__.py | __init__ | 195 | Index client created for host https://rag-hotel-fts-esaxznd.svc.aped-4627-b74a.pinecone.io
+2026-09-15 20:24:50,212 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 20:24:50,234 | INFO | pinecone.index | __init__.py | search | 1490 | Searching namespace 'services-providers' with top_k=5
+2026-09-15 20:24:51,597 | INFO | pinecone.client.documents | documents.py | search | 364 | Searching documents in namespace 'services-providers' with top_k=5
+2026-09-15 20:24:52,944 | INFO | pinecone.client.inference | inference.py | rerank | 449 | Reranking 4 documents with model 'bge-reranker-v2-m3'
+2026-09-15 20:24:53,831 | INFO | root | main.py | chat | 23 | Successfull query database
+2026-09-15 20:24:54,239 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 20:24:54,240 | INFO | root | main.py | chat | 40 | Successfull response
+2026-09-15 20:26:33,887 | INFO | root | appInitlize.py | read_api_key_from_config | 15 | Reading API key from config file
+2026-09-15 20:26:34,711 | INFO | root | dataBase.py | __init__ | 30 | Pinecone Successfully connected
+2026-09-15 20:26:34,749 | INFO | pinecone.client.indexes | indexes.py | describe | 231 | Describing index 'rag-hotel'
+2026-09-15 20:26:35,698 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel "HTTP/1.1 200 OK"
+2026-09-15 20:26:35,704 | INFO | root | dataBase.py | create_index | 72 | Index already exist
+2026-09-15 20:26:35,704 | INFO | pinecone.client.indexes | indexes.py | describe | 231 | Describing index 'rag-hotel-fts'
+2026-09-15 20:26:36,333 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel-fts "HTTP/1.1 200 OK"
+2026-09-15 20:26:36,333 | INFO | root | dataBase.py | create_fts_index | 106 | FTS index already exist
+2026-09-15 20:26:36,589 | INFO | pinecone.index | __init__.py | __init__ | 195 | Index client created for host https://rag-hotel-esaxznd.svc.aped-4627-b74a.pinecone.io
+2026-09-15 20:26:36,847 | INFO | pinecone.index | __init__.py | __init__ | 195 | Index client created for host https://rag-hotel-fts-esaxznd.svc.aped-4627-b74a.pinecone.io
+2026-09-15 20:26:43,934 | INFO | root | appInitlize.py | read_api_key_from_config | 15 | Reading API key from config file
+2026-09-15 20:26:44,795 | INFO | root | dataBase.py | __init__ | 30 | Pinecone Successfully connected
+2026-09-15 20:26:44,834 | INFO | pinecone.client.indexes | indexes.py | describe | 231 | Describing index 'rag-hotel'
+2026-09-15 20:26:45,858 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel "HTTP/1.1 200 OK"
+2026-09-15 20:26:45,865 | INFO | root | dataBase.py | create_index | 72 | Index already exist
+2026-09-15 20:26:45,865 | INFO | pinecone.client.indexes | indexes.py | describe | 231 | Describing index 'rag-hotel-fts'
+2026-09-15 20:26:46,676 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel-fts "HTTP/1.1 200 OK"
+2026-09-15 20:26:46,677 | INFO | root | dataBase.py | create_fts_index | 106 | FTS index already exist
+2026-09-15 20:26:47,042 | INFO | pinecone.index | __init__.py | __init__ | 195 | Index client created for host https://rag-hotel-esaxznd.svc.aped-4627-b74a.pinecone.io
+2026-09-15 20:26:47,312 | INFO | pinecone.index | __init__.py | __init__ | 195 | Index client created for host https://rag-hotel-fts-esaxznd.svc.aped-4627-b74a.pinecone.io
+2026-09-15 20:26:53,437 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 20:26:53,466 | INFO | pinecone.index | __init__.py | search | 1490 | Searching namespace 'services-providers' with top_k=5
+2026-09-15 20:26:54,840 | INFO | pinecone.client.documents | documents.py | search | 364 | Searching documents in namespace 'services-providers' with top_k=5
+2026-09-15 20:26:56,181 | INFO | pinecone.client.inference | inference.py | rerank | 449 | Reranking 6 documents with model 'bge-reranker-v2-m3'
+2026-09-15 20:26:57,226 | INFO | root | main.py | chat | 23 | Successfull query database
+2026-09-15 20:26:57,227 | INFO | root | prompt.py | create_context | 29 | context:
+            Name: 
+            Category: 
+            City: 
+            Region: 
+            Rating: 
+            Distance: 
+            Services: 
+            Description: 
+
+            ---
+            
+            Name: 
+            Category: 
+            City: 
+            Region: 
+            Rating: 
+            Distance: 
+            Services: 
+            Description: 
+
+            ---
+            
+            Name: 
+            Category: 
+            City: 
+            Region: 
+            Rating: 
+            Distance: 
+            Services: 
+            Description: 
+
+            ---
+            
+            Name: 
+            Category: 
+            City: 
+            Region: 
+            Rating: 
+            Distance: 
+            Services: 
+            Description: 
+
+            ---
+            
+            Name: 
+            Category: 
+            City: 
+            Region: 
+            Rating: 
+            Distance: 
+            Services: 
+            Description: 
+
+            ---
+            
+2026-09-15 20:26:57,630 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 20:26:57,631 | INFO | root | main.py | chat | 39 | Successfull response
+2026-09-15 20:27:44,832 | INFO | root | appInitlize.py | read_api_key_from_config | 15 | Reading API key from config file
+2026-09-15 20:27:45,594 | INFO | root | dataBase.py | __init__ | 30 | Pinecone Successfully connected
+2026-09-15 20:27:45,633 | INFO | pinecone.client.indexes | indexes.py | describe | 231 | Describing index 'rag-hotel'
+2026-09-15 20:27:46,945 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel "HTTP/1.1 200 OK"
+2026-09-15 20:27:46,958 | INFO | root | dataBase.py | create_index | 72 | Index already exist
+2026-09-15 20:27:46,960 | INFO | pinecone.client.indexes | indexes.py | describe | 231 | Describing index 'rag-hotel-fts'
+2026-09-15 20:27:47,298 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel-fts "HTTP/1.1 200 OK"
+2026-09-15 20:27:47,299 | INFO | root | dataBase.py | create_fts_index | 106 | FTS index already exist
+2026-09-15 20:27:48,427 | INFO | pinecone.index | __init__.py | __init__ | 195 | Index client created for host https://rag-hotel-esaxznd.svc.aped-4627-b74a.pinecone.io
+2026-09-15 20:27:49,515 | INFO | pinecone.index | __init__.py | __init__ | 195 | Index client created for host https://rag-hotel-fts-esaxznd.svc.aped-4627-b74a.pinecone.io
+2026-09-15 20:41:05,554 | INFO | root | appInitlize.py | read_api_key_from_config | 15 | Reading API key from config file
+2026-09-15 20:41:06,447 | INFO | root | dataBase.py | __init__ | 30 | Pinecone Successfully connected
+2026-09-15 20:41:06,490 | INFO | pinecone.client.indexes | indexes.py | describe | 231 | Describing index 'rag-hotel'
+2026-09-15 20:41:08,048 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel "HTTP/1.1 200 OK"
+2026-09-15 20:41:08,050 | INFO | root | dataBase.py | create_index | 72 | Index already exist
+2026-09-15 20:41:08,051 | INFO | pinecone.client.indexes | indexes.py | describe | 231 | Describing index 'rag-hotel-fts'
+2026-09-15 20:41:08,914 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel-fts "HTTP/1.1 200 OK"
+2026-09-15 20:41:08,915 | INFO | root | dataBase.py | create_fts_index | 106 | FTS index already exist
+2026-09-15 20:41:09,196 | INFO | pinecone.index | __init__.py | __init__ | 195 | Index client created for host https://rag-hotel-esaxznd.svc.aped-4627-b74a.pinecone.io
+2026-09-15 20:41:09,436 | INFO | pinecone.index | __init__.py | __init__ | 195 | Index client created for host https://rag-hotel-fts-esaxznd.svc.aped-4627-b74a.pinecone.io
+2026-09-15 20:41:25,483 | INFO | root | appInitlize.py | read_api_key_from_config | 15 | Reading API key from config file
+2026-09-15 20:41:26,413 | INFO | root | dataBase.py | __init__ | 30 | Pinecone Successfully connected
+2026-09-15 20:41:26,459 | INFO | pinecone.client.indexes | indexes.py | describe | 231 | Describing index 'rag-hotel'
+2026-09-15 20:41:27,492 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel "HTTP/1.1 200 OK"
+2026-09-15 20:41:27,495 | INFO | root | dataBase.py | create_index | 72 | Index already exist
+2026-09-15 20:41:27,495 | INFO | pinecone.client.indexes | indexes.py | describe | 231 | Describing index 'rag-hotel-fts'
+2026-09-15 20:41:28,173 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel-fts "HTTP/1.1 200 OK"
+2026-09-15 20:41:28,174 | INFO | root | dataBase.py | create_fts_index | 106 | FTS index already exist
+2026-09-15 20:41:28,466 | INFO | pinecone.index | __init__.py | __init__ | 195 | Index client created for host https://rag-hotel-esaxznd.svc.aped-4627-b74a.pinecone.io
+2026-09-15 20:41:28,729 | INFO | pinecone.index | __init__.py | __init__ | 195 | Index client created for host https://rag-hotel-fts-esaxznd.svc.aped-4627-b74a.pinecone.io
+2026-09-15 20:41:32,436 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 20:41:32,456 | INFO | pinecone.index | __init__.py | search | 1490 | Searching namespace 'services-providers' with top_k=5
+2026-09-15 20:41:33,959 | INFO | pinecone.client.documents | documents.py | search | 364 | Searching documents in namespace 'services-providers' with top_k=5
+2026-09-15 20:41:35,452 | INFO | pinecone.client.inference | inference.py | rerank | 449 | Reranking 4 documents with model 'bge-reranker-v2-m3'
+2026-09-15 20:41:36,537 | INFO | root | main.py | chat | 23 | Successfull query database
+2026-09-15 20:41:36,537 | INFO | root | prompt.py | create_context | 37 | context:
+        name: Urban Bites, city: Helsinki region: Uusimaa rating: 9.1distance: 4.3kmServices: Burgers, Pizza, French Fries, Chicken Wings, Biryani, Pasta. description: A casual restaurant offering burgers, pizza, pasta, chicken wings and popular fast food.
+        ---
+        
+        name: Taste Hub, city: Espoo region: Uusimaa rating: 8.9distance: 5.4kmServices: Biryani, Chicken Karahi, Burgers, Pizza, Chicken Tikka, French Fries, Naan. description: A diverse restaurant combining South Asian dishes with popular burgers, pizza and fast-food options.
+        ---
+        
+        name: Food Junction, city: Helsinki region: Uusimaa rating: 7.9distance: 1.8kmServices: Burgers, Pizza, French Fries, Chicken Wings, Pasta, Sandwiches, Shawarma. description: A fast-food restaurant serving burgers, pizza, shawarma, sandwiches, pasta and crispy chicken.
+        ---
+        
+        name: Quick Feast, city: Vantaa region: Uusimaa rating: 7.7distance: 2.9kmServices: Burgers, Shawarma, Pizza, French Fries, Chicken Wings. description: A quick-service restaurant offering burgers, shawarma, pizza, fries and chicken wings.
+        ---
+        
+2026-09-15 20:41:36,819 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 20:41:36,821 | INFO | root | main.py | chat | 39 | Successfull response
+2026-09-15 20:41:52,099 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 20:41:52,103 | INFO | pinecone.index | __init__.py | search | 1490 | Searching namespace 'services-providers' with top_k=5
+2026-09-15 20:41:53,425 | INFO | pinecone.client.documents | documents.py | search | 364 | Searching documents in namespace 'services-providers' with top_k=5
+2026-09-15 20:41:54,452 | INFO | pinecone.client.inference | inference.py | rerank | 449 | Reranking 4 documents with model 'bge-reranker-v2-m3'
+2026-09-15 20:41:55,350 | INFO | root | main.py | chat | 23 | Successfull query database
+2026-09-15 20:41:55,351 | INFO | root | prompt.py | create_context | 37 | context:
+        name: Urban Bites, city: Helsinki region: Uusimaa rating: 9.1distance: 4.3kmServices: Burgers, Pizza, French Fries, Chicken Wings, Biryani, Pasta. description: A casual restaurant offering burgers, pizza, pasta, chicken wings and popular fast food.
+        ---
+        
+        name: Food Junction, city: Helsinki region: Uusimaa rating: 7.9distance: 1.8kmServices: Burgers, Pizza, French Fries, Chicken Wings, Pasta, Sandwiches, Shawarma. description: A fast-food restaurant serving burgers, pizza, shawarma, sandwiches, pasta and crispy chicken.
+        ---
+        
+        name: Taste Hub, city: Espoo region: Uusimaa rating: 8.9distance: 5.4kmServices: Biryani, Chicken Karahi, Burgers, Pizza, Chicken Tikka, French Fries, Naan. description: A diverse restaurant combining South Asian dishes with popular burgers, pizza and fast-food options.
+        ---
+        
+        name: Quick Feast, city: Vantaa region: Uusimaa rating: 7.7distance: 2.9kmServices: Burgers, Shawarma, Pizza, French Fries, Chicken Wings. description: A quick-service restaurant offering burgers, shawarma, pizza, fries and chicken wings.
+        ---
+        
+2026-09-15 20:41:55,787 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 20:41:55,790 | INFO | root | main.py | chat | 39 | Successfull response

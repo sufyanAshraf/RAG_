@@ -20,8 +20,8 @@ class queryCreator:
         field_mapping = {
             "category": "category",
             "city": "city",
-            "region": "region",
-            "rating": "rating"
+            "region": "region"
+            # "rating": "rating"
             # "distance": "distance" # you need distance in integer otherwise it will do exact match
         }
     
