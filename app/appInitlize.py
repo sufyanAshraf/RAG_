@@ -8,6 +8,7 @@ from .prepareData import data_prepration_for_embadddings
 from .dataBase import dataBase 
 from .prompt import getPrompt
 from .query_creator import queryCreator
+from .history_manager import HistoryManager
 
 def read_api_key_from_config() -> str:
     """Read the API key from the config.ini file."""
@@ -46,9 +47,5 @@ def initlize_db_and_llm():
 
     return db, model
 
-def build_retrieval_query(query, history):
-    previous_turns = [
-        f"User: {turn.query}\nAssistant: {turn.response}"
-        for turn in history
-    ]
-    return "\n".join(previous_turns + [f"User: {query}"])
+def build_retrieval_query(query, history_manager: HistoryManager):
+    return history_manager.get_retrieval_query(query)

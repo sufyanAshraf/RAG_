@@ -30,13 +30,12 @@ def create_context(results):
     return context
 
 
-def getPrompt(query, results, history=None):
+def getPrompt(query, results, conversation):
     context = create_context(results)
     if not context:
         logger.error("Error in context")
         return None
-
-    conversation = format_history(history or [])
+ 
     conversation_section = conversation or "No previous conversation."
 
     full_prompt = f"""
