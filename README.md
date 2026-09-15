@@ -1,100 +1,184 @@
-# RAG  
+# RAG Local Business Assistant
 
-A personal project focused on building a Retrieval-Augmented Generation (RAG) system with FastAPI, vector search, and language models.
+A Retrieval-Augmented Generation API for discovering hotels, spas, and restaurants in Finland. The service combines structured local data, Pinecone search, LLM-generated metadata filters, and Groq response generation to answer natural-language questions with grounded business information.
 
-This is a learning and portfolio project designed to explore how local business data can be indexed, retrieved, and used to generate grounded answers with an LLM.
+Example questions:
 
-## Demo
+- `Find a hotel in Helsinki with a swimming pool`
+- `Which spa in Espoo offers sports massage?`
+- `Find a restaurant in Vantaa serving biryani and seekh kebab`
 
-<video src="https://github.com/sufyanAshraf/ingest_doc/raw/refs/heads/main/demo.mp4" controls width="720"></video>
+## Features
 
-[Open the demo video](https://github.com/sufyanAshraf/ingest_doc/raw/refs/heads/main/demo.mp4) if the embedded player is not supported.
-![Project Demo](https://github.com/sufyanAshraf/ingest_doc/raw/refs/heads/main/demo.gif)
+### Retrieval-Augmented Generation
 
-## What this project does
+- Loads hotel, massage, and restaurant records from the `data/` directory.
+- Converts records into Pinecone-compatible records with searchable text and metadata.
+- Creates or connects to a Pinecone index named `rag-hotel`.
+- Uses Pinecone hosted `llama-text-embed-v2` embeddings through the integrated model index API.
+- Retrieves the five most relevant records from the `services-providers` namespace.
+- Builds a grounded answer prompt from retrieved business context.
 
-- loads structured local data
-- converts records into embeddings
-- stores vectors in Pinecone 
-- metadata store saperately
-- retrieves relevant context with similarity search
-- generates a final response using Groq
-- includes a evaluation workflow for testing quality
-- evaluation include:
-- Context Precision
-- Context recall
-- Faithfulness
-- Response Relevancy
+### Natural-language query understanding
 
-## Tech stack
+- Uses Groq to convert a natural-language request into a structured JSON filter.
+- Recognizes the categories `hotel`, `spa`, and `restaurant`.
+- Extracts category, name, city, region, rating, distance, and requested services.
+- Maps user terms to known services such as `Swimming Pool`, `Hot Stone Massage`, `Biryani`, and `Chocolate Cake`.
+- Applies the generated filters to Pinecone metadata search.
+
+### Conversation awareness
+
+- Stores recent query and response pairs in a `HistoryManager`.
+- Keeps a sliding window of recent conversation turns.
+- Uses recent conversation when building retrieval queries and answer prompts.
+- Folds turns that leave the window into an LLM-generated rolling summary.
+- Preserves user preferences, locations, requested services, selected places, and unresolved questions in the summary.
+
+
+### API endpoints
+
+| Method | Path | Description |
+| --- | --- | --- |
+| `POST` | `/` | Search the local business data and generate an answer. |
+| `GET` | `/health` | Return the service health status. |
+| `GET` | `/eval` | Evaluation endpoint placeholder. |
+
+## Request and response
+
+Send a natural-language query to `POST /`:
+
+```json
+{
+	"query": "Find a hotel in Helsinki with a pool"
+}
+```
+
+Response:
+
+```json
+{
+	"response": "..."
+}
+```
+
+Conversation turns are currently maintained by the server-side `HistoryManager`. The client does not send a history field in the current request model.
+
+## Request flow
+
+```mermaid
+flowchart LR
+		A[User query] --> B[FastAPI]
+		B --> C[HistoryManager]
+		C --> D[Groq query parser]
+		D --> E[Structured Pinecone filters]
+		C --> F[History-aware retrieval query]
+		E --> G[Pinecone search]
+		F --> G
+		G --> H[Retrieved business context]
+		C --> I[Conversation context and summary]
+		H --> J[Grounded answer prompt]
+		I --> J
+		J --> K[Groq answer model]
+		K --> L[Response]
+		K --> C
+```
+
+## Technology stack
 
 - Python
 - FastAPI
-- FAISS
-- Hugging Face Embeddings
-- LangChain
+- Pydantic
+- Uvicorn
+- Pinecone
 - Groq
-- pytest
-- Ragas
+- LangChain Groq integration
+- Pytest
+- PowerShell for local development on Windows
 
-## Project status
+## Project structure
 
-This project is for personal learning, experimentation, and portfolio demonstration. It is not intended as a public product or reusable service for general external use.
+```text
+app/
+	appInitlize.py       Configuration, Pydantic models, and service initialization
+	dataBase.py          Pinecone connection, index setup, upsert, and search
+	eval.py              Evaluation module placeholder
+	evalData.py          Evaluation query and reference data
+	history_manager.py   Recent conversation window and rolling summary
+	logger.py            Application logging
+	main.py              FastAPI application and request orchestration
+	models.py            Groq model wrapper
+	prepareData.py       Source-record transformation for Pinecone
+	prompt.py            Context and answer prompt construction
+	query_creator.py     LLM query parsing and metadata filter creation
+	readData.py          Local data loading
 
-## Local setup
+data/
+	hotels.txt
+	massage.txt
+	restaurants.txt
+
+test/
+	database_test.py
+	liberies_test.py
+	main_test.py
+	model_test.py
+```
+
+## Configuration
+
+Create a local `config.ini` file with the API keys expected by the application:
+
+```ini
+[KEYS]
+groq_api_key = your-groq-api-key
+pinecone_api_key = your-pinecone-api-key
+```
+
+Do not commit credentials. Rotate any key that has been exposed in source control or logs.
+
+## Installation
+
+From the repository root:
 
 ```powershell
-cd C:\Users\hp\work\ingest_doc
 python -m venv RAGENV
 .\RAGENV\Scripts\Activate.ps1
 python -m pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-## Run locally
+## Run the API
 
 ```powershell
-cd C:\Users\hp\work\ingest_doc
 .\RAGENV\Scripts\python.exe -m uvicorn app.main:app --reload
 ```
 
-Open:
+Open the interactive API documentation at:
 
-- http://127.0.0.1:8000/docs
+http://127.0.0.1:8000/docs
 
-## Conversation context
+Example PowerShell request:
 
-The API is stateless. Send previous turns in `history` with each follow-up request:
-
-```json
-{
-	"query": "What about one with a pool?",
-	"history": [
-		{"role": "user", "content": "Find a hotel in Helsinki"},
-		{"role": "assistant", "content": "Here are some options."}
-	]
-}
+```powershell
+Invoke-RestMethod `
+	-Uri http://127.0.0.1:8000/ `
+	-Method Post `
+	-ContentType "application/json" `
+	-Body '{"query":"Find a hotel in Helsinki with a pool"}'
 ```
 
-History is limited to 20 messages, and each message is limited to 2,000 characters. Previous user messages are used for retrieval; both user and assistant messages are included when generating the answer. The response remains `{ "response": "..." }`.
+## Tests
 
-## Notes
+Run the test suite with:
 
-- API keys are kept in local config files only.
-- This is a personal experimentation project.
-- Do not expose this project or its data publicly without review.
+```powershell
+.\RAGENV\Scripts\python.exe -m pytest
+```
 
-## Purpose
+The tests cover the database, model wrapper, and API behavior. Conversation-specific tests should be expanded as session isolation and persistence are added.
 
-The goal is to practice:
+## Project status
 
-- RAG pipeline design
-- embedding-based retrieval
-- prompt construction
-- LLM integration
-- evaluation and experimentation
-
-## License
-
-For personal use and portfolio demonstration only.
+This is a learning and portfolio project focused on RAG pipeline design, vector search, prompt engineering, LLM integration, and evaluation experiments. It is not currently intended as a production multi-user service.
 
