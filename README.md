@@ -16,8 +16,17 @@ Example questions:
 - Converts records into Pinecone-compatible records with searchable text and metadata.
 - Creates or connects to a Pinecone index named `rag-hotel`.
 - Uses Pinecone hosted `llama-text-embed-v2` embeddings through the integrated model index API.
-- Retrieves the five most relevant records from the `services-providers` namespace.
+- Retrieves the five most relevant records from the `services-providers` namespace with hybrid search.
 - Builds a grounded answer prompt from retrieved business context.
+
+### BM25 and hybrid search
+
+- Maintains a dense vector index (`rag-hotel`) for semantic similarity search.
+- Maintains a separate Pinecone full-text index (`rag-hotel-fts`) for BM25 keyword search over `chunk_text`.
+- Upserts every prepared record into both indexes in the `services-providers` namespace.
+- Applies the same LLM-generated metadata filter to both dense and BM25 searches.
+- Merges and deduplicates candidates by record ID, then reranks the combined set with Pinecone's `bge-reranker-v2-m3` model.
+- Returns up to five reranked records to the answer-generation prompt. This combines semantic matches with exact terms such as city names, services, and restaurant dishes.
 
 ### Natural-language query understanding
 
@@ -73,15 +82,20 @@ flowchart LR
 		C --> D[Groq query parser]
 		D --> E[Structured Pinecone filters]
 		C --> F[History-aware retrieval query]
-		E --> G[Pinecone search]
+		E --> G[Dense vector search]
+		E --> H[BM25 full-text search]
 		F --> G
-		G --> H[Retrieved business context]
-		C --> I[Conversation context and summary]
-		H --> J[Grounded answer prompt]
-		I --> J
-		J --> K[Groq answer model]
-		K --> L[Response]
-		K --> C
+		F --> H
+		G --> I[Merge and deduplicate]
+		H --> I
+		I --> J[Cross-encoder reranking]
+		J --> K[Retrieved business context]
+		C --> O[Conversation context and summary]
+		K --> L[Grounded answer prompt]
+		O --> L
+		L --> M[Groq answer model]
+		M --> N[Response]
+		M --> C
 ```
 
 ## Technology stack
@@ -91,6 +105,7 @@ flowchart LR
 - Pydantic
 - Uvicorn
 - Pinecone
+- Pinecone dense vector search, BM25 full-text search, and reranking
 - Groq
 - LangChain Groq integration
 - Pytest
