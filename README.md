@@ -79,28 +79,28 @@ Conversation turns are currently maintained by the server-side `HistoryManager`.
 flowchart LR
 		A[User query] --> B[FastAPI]
 		B --> C[HistoryManager]
-		C --> D[Groq query parser]
-		D --> E[Structured Pinecone filters]
-		C --> F[History-aware retrieval query]
-		E --> G[Dense vector search]
-		E --> H[BM25 full-text search]
-		F --> G
-		F --> H
-		G --> I[Merge and deduplicate]
-		H --> I
-		I --> J[Cross-encoder reranking]
-		J --> K[Retrieved business context]
-		C --> O[Conversation context and summary]
+		subgraph Retrieval[Hybrid retrieval]
+			D[Groq query parser] --> E[Metadata filters]
+			F[History-aware query] --> G[Dense search]
+			F --> H[BM25 search]
+			E --> G
+			E --> H
+			G --> I[Merge and deduplicate]
+			H --> I
+			I --> J[Rerank]
+		end
+		C --> D
+		C --> F
+		subgraph Memory[Conversation memory]
+			O[Conversation context and summary]
+			P[Add response to history] --> Q{More than six turns?}
+			Q -- Yes --> R[Groq summary model] --> S[Update rolling summary] --> O
+			Q -- No --> O
+		end
+		J --> K[Retrieved context]
 		K --> L[Grounded answer prompt]
 		O --> L
-		L --> M[Groq answer model]
-		M --> N[Response]
-		N --> P[Add turn to HistoryManager]
-		P --> Q{Window exceeds six turns?}
-		Q -- Yes --> R[Groq summarization model]
-		R --> S[Update rolling summary]
-		S --> O
-		Q -- No --> O
+		L --> M[Groq answer model] --> N[Response] --> P
 ```
 
 ## Technology stack
