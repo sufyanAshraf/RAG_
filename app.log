@@ -794,3 +794,84 @@
 2026-09-15 16:59:53,783 | INFO | root | main.py | chat | 39 | Successfull response
 2026-09-15 16:59:54,249 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
 2026-09-15 16:59:54,250 | INFO | root | history_manager.py | _fold_into_summary | 46 | Rolled up one turn into rolling summary
+2026-09-15 17:04:12,982 | INFO | root | appInitlize.py | read_api_key_from_config | 15 | Reading API key from config file
+2026-09-15 17:04:13,851 | INFO | root | dataBase.py | __init__ | 31 | Pinecone Successfully connected
+2026-09-15 17:04:13,895 | INFO | pinecone.client.indexes | indexes.py | describe | 231 | Describing index 'rag-hotel'
+2026-09-15 17:04:14,821 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel "HTTP/1.1 200 OK"
+2026-09-15 17:04:14,822 | INFO | root | dataBase.py | create_index | 61 | Index already exist
+2026-09-15 17:04:15,029 | INFO | pinecone.index | __init__.py | __init__ | 195 | Index client created for host https://rag-hotel-esaxznd.svc.aped-4627-b74a.pinecone.io
+2026-09-15 17:04:48,255 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 17:04:48,265 | INFO | pinecone.index | __init__.py | search | 1490 | Searching namespace 'services-providers' with top_k=5
+2026-09-15 17:04:49,836 | INFO | root | main.py | chat | 23 | Successfull query database
+2026-09-15 17:04:50,519 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 17:04:50,520 | INFO | root | main.py | chat | 39 | Successfull response
+2026-09-15 17:05:47,119 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 17:05:47,123 | INFO | pinecone.index | __init__.py | search | 1490 | Searching namespace 'services-providers' with top_k=5
+2026-09-15 17:05:48,520 | INFO | root | main.py | chat | 23 | Successfull query database
+2026-09-15 17:05:48,937 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 17:05:48,941 | INFO | root | main.py | chat | 39 | Successfull response
+2026-09-15 17:06:45,702 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 17:06:45,705 | INFO | pinecone.index | __init__.py | search | 1490 | Searching namespace 'services-providers' with top_k=5
+2026-09-15 17:06:47,063 | INFO | root | main.py | chat | 23 | Successfull query database
+2026-09-15 17:06:47,435 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 17:06:47,436 | INFO | root | main.py | chat | 39 | Successfull response
+2026-09-15 17:07:14,778 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 17:07:14,814 | INFO | pinecone.index | __init__.py | search | 1490 | Searching namespace 'services-providers' with top_k=5
+2026-09-15 17:07:15,924 | INFO | root | main.py | chat | 23 | Successfull query database
+2026-09-15 17:07:16,582 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 17:07:16,583 | INFO | root | main.py | chat | 39 | Successfull response
+2026-09-15 17:08:00,094 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 17:08:00,096 | INFO | pinecone.index | __init__.py | search | 1490 | Searching namespace 'services-providers' with top_k=5
+2026-09-15 17:08:01,397 | INFO | root | main.py | chat | 23 | Successfull query database
+2026-09-15 17:08:01,909 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 17:08:01,910 | INFO | root | main.py | chat | 39 | Successfull response
+2026-09-15 17:10:09,924 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 17:10:09,925 | INFO | pinecone.index | __init__.py | search | 1490 | Searching namespace 'services-providers' with top_k=5
+2026-09-15 17:10:12,136 | INFO | root | main.py | chat | 23 | Successfull query database
+2026-09-15 17:10:12,610 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 17:10:12,611 | INFO | root | main.py | chat | 39 | Successfull response
+2026-09-15 17:11:31,124 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 17:11:31,131 | INFO | pinecone.index | __init__.py | search | 1490 | Searching namespace 'services-providers' with top_k=5
+2026-09-15 17:11:32,534 | INFO | root | main.py | chat | 23 | Successfull query database
+2026-09-15 17:11:32,905 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 17:11:32,907 | INFO | root | main.py | chat | 39 | Successfull response
+2026-09-15 17:11:33,475 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 17:11:33,476 | INFO | root | history_manager.py | _fold_into_summary | 50 | Rolled up one turn into rolling summary
+2026-09-15 17:12:33,992 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 17:12:33,993 | INFO | pinecone.index | __init__.py | search | 1490 | Searching namespace 'services-providers' with top_k=5
+2026-09-15 17:12:35,348 | INFO | root | main.py | chat | 23 | Successfull query database
+2026-09-15 17:12:35,653 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 17:12:35,654 | INFO | root | main.py | chat | 39 | Successfull response
+2026-09-15 17:12:36,117 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 17:12:36,118 | INFO | root | history_manager.py | _fold_into_summary | 50 | Rolled up one turn into rolling summary
+2026-09-15 17:12:58,485 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 17:12:58,491 | INFO | pinecone.index | __init__.py | search | 1490 | Searching namespace 'services-providers' with top_k=5
+2026-09-15 17:12:59,587 | INFO | root | main.py | chat | 23 | Successfull query database
+2026-09-15 17:13:00,221 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 17:13:00,222 | INFO | root | main.py | chat | 39 | Successfull response
+2026-09-15 17:13:01,206 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 17:13:01,208 | INFO | root | history_manager.py | _fold_into_summary | 50 | Rolled up one turn into rolling summary
+2026-09-15 17:14:04,102 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 17:14:04,103 | INFO | pinecone.index | __init__.py | search | 1490 | Searching namespace 'services-providers' with top_k=5
+2026-09-15 17:14:05,542 | INFO | root | main.py | chat | 23 | Successfull query database
+2026-09-15 17:14:05,987 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 17:14:05,989 | INFO | root | main.py | chat | 39 | Successfull response
+2026-09-15 17:14:06,644 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 17:14:06,645 | INFO | root | history_manager.py | _fold_into_summary | 50 | Rolled up one turn into rolling summary
+2026-09-15 17:14:40,360 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 17:14:40,361 | INFO | pinecone.index | __init__.py | search | 1490 | Searching namespace 'services-providers' with top_k=5
+2026-09-15 17:14:41,674 | INFO | root | main.py | chat | 23 | Successfull query database
+2026-09-15 17:14:42,314 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 17:14:42,316 | INFO | root | main.py | chat | 39 | Successfull response
+2026-09-15 17:14:42,917 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 17:14:42,918 | INFO | root | history_manager.py | _fold_into_summary | 50 | Rolled up one turn into rolling summary
+2026-09-15 17:15:13,049 | INFO | groq._base_client | _base_client.py | _sleep_for_retry | 1068 | Retrying request to /openai/v1/chat/completions in 0.439092 seconds
+2026-09-15 17:15:13,490 | INFO | groq._base_client | _base_client.py | _sleep_for_retry | 1068 | Retrying request to /openai/v1/chat/completions in 0.784991 seconds
+2026-09-15 17:15:14,277 | ERROR | root | models.py | invoke_model | 64 | Error occurred while invoking the model: Connection error.
+2026-09-15 17:16:02,126 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 17:16:02,128 | INFO | pinecone.index | __init__.py | search | 1490 | Searching namespace 'services-providers' with top_k=5
+2026-09-15 17:16:03,545 | INFO | root | main.py | chat | 23 | Successfull query database
+2026-09-15 17:16:04,098 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 17:16:04,099 | INFO | root | main.py | chat | 39 | Successfull response
+2026-09-15 17:16:04,571 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 17:16:04,572 | INFO | root | history_manager.py | _fold_into_summary | 50 | Rolled up one turn into rolling summary

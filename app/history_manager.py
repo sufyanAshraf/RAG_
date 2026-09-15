@@ -1,6 +1,10 @@
 from .logger import logger 
 from typing import List
+from pydantic import BaseModel
 
+class ConversationTurn(BaseModel):
+    query: str
+    response: str
 
 class HistoryManager:
     """
