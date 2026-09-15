@@ -97,11 +97,7 @@ flowchart TD
         I --> J[Cross-Encoder Reranking]
         J --> K[Retrieved Business Context]
     end
-
-    subgraph CONTEXT["Conversation Context"]
-        C --> O[Conversation Context & Rolling Summary]
-    end
-
+    
     K --> L[Grounded Answer Prompt]
     O --> L
 
@@ -110,14 +106,18 @@ flowchart TD
         M --> N[Response]
     end
 
-    N --> P[Add Turn to HistoryManager]
+	subgraph CONTEXT["Conversation Context"]
+        C --> O[Conversation Context & Rolling Summary]
+    
+		N --> P[Add Turn to HistoryManager]
+		
+		P --> Q{Window Exceeds 6 Turns?}
+
+		Q -- Yes --> R[LLM Summarization Model]
+		R --> S[Update Rolling Summary]
+		S --> O
+	end
 	N --> T[User]
-    P --> Q{Window Exceeds 6 Turns?}
-
-    Q -- Yes --> R[LLM Summarization Model]
-    R --> S[Update Rolling Summary]
-    S --> O
-
     Q -- No --> O
 ```
 
