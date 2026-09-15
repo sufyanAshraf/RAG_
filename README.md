@@ -117,10 +117,9 @@ flowchart TD
 		R --> S[Update Rolling Summary]
 		S --> O
 	end
-	N --> T[User]
+	N --> 
     Q -- No --> O
 ```
- %% ========================= %% USER REQUEST %% ========================= A([👤 User Query]) --> B[⚡ FastAPI] %% ========================= %% CONVERSATION MANAGEMENT %% ========================= subgraph CM["💬 Conversation Management"] B --> C[Conversation History Manager] C --> D[Recent Conversation Turns] C --> E[Rolling Conversation Summary] D & E --> F[Conversation Context] end %% ========================= %% QUERY PROCESSING %% ========================= subgraph QP["🧠 Query Processing"] C --> G[LLM Query Parser] G --> H[Structured Pinecone Filters] C --> I[History-Aware Retrieval Query] end %% ========================= %% HYBRID RETRIEVAL %% ========================= subgraph HR["🔎 Hybrid Retrieval"] H --> J[Dense Vector Search] H --> K[BM25 Full-Text Search] I --> J I --> K J --> L[Merge & Deduplicate] K --> L L --> M[Cross-Encoder Reranking] M --> N[Retrieved Business Context] end %% ========================= %% ANSWER GENERATION %% ========================= subgraph AG["🤖 Grounded Answer Generation"] F --> O[Grounded Answer Prompt] N --> O O --> P[LLM Answer Model] P --> R([💡 Response]) end %% ========================= %% HISTORY UPDATE %% ========================= R --> S[Add Turn to History Manager] S --> T{History Window > 6 Turns?} T -- No --> D T -- Yes --> U[LLM Summarization Model] U --> V[Update Rolling Summary] V --> E %% ========================= %% STYLING %% ========================= classDef input fill:#f5f5f5,stroke:#333,stroke-width:2px classDef process fill:#eef4ff,stroke:#4a6fa5,stroke-width:1.5px classDef storage fill:#f3f0ff,stroke:#7656a6,stroke-width:1.5px classDef llm fill:#fff3e0,stroke:#d98b2b,stroke-width:1.5px classDef output fill:#eaf7ea,stroke:#4d8b4d,stroke-width:2px classDef decision fill:#fff8dc,stroke:#b7950b,stroke-width:1.5px class A,R input class B,C,G,H,I,J,K,L,M,N,O,S process class D,E,F,V storage class P,U llm class T decision
  
 ## Technology stack
 
