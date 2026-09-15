@@ -127,11 +127,10 @@ flowchart TD
 - Pydantic
 - Uvicorn
 - Pinecone
-- Pinecone dense vector search, BM25 full-text search, and reranking
-- Groq
+- Pinecone (dense vector search, BM25 full-text search, and reranking)
+- Groq (LLM)
 - LangChain Groq integration
-- Pytest
-- PowerShell for local development on Windows
+- Pytest 
 
 ## Project structure
 
