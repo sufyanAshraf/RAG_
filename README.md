@@ -36,6 +36,13 @@ Example questions:
 - Maps user terms to known services such as `Swimming Pool`, `Hot Stone Massage`, `Biryani`, and `Chocolate Cake`.
 - Applies the generated filters to Pinecone metadata search.
 
+### Query guardrails
+
+- Runs a pre-retrieval safety and scope check on every user query.
+- Blocks off-topic, prompt-injection, unsafe-content, and PII requests before Pinecone search.
+- Returns a brief refusal message when the query is outside the supported business-search scope.
+- Uses a fail-closed policy for clear violations and a fail-open fallback for transient model or JSON parsing issues.
+
 ### Conversation awareness
 
 - Stores recent query and response pairs in a `HistoryManager`.
@@ -78,7 +85,9 @@ Conversation turns are currently maintained by the server-side `HistoryManager`.
 ```mermaid
 flowchart TD
 
-    A[User Query] --> B[FastAPI]
+    A[User Query] --> QG[Query Guardrail]
+    QG -- Blocked --> BR[Refusal Response]
+    QG -- Allowed --> B[FastAPI]
     B --> C[HistoryManager]
 
     subgraph QUERY["Query Processing"]
@@ -97,7 +106,7 @@ flowchart TD
         I --> J[Cross-Encoder Reranking]
         J --> K[Retrieved Business Context]
     end
-    
+
     K --> L[Grounded Answer Prompt]
     O --> L
 
@@ -106,17 +115,18 @@ flowchart TD
         M --> N[Response]
     end
 
-	subgraph CONTEXT["Conversation Context"]
+    subgraph CONTEXT["Conversation Context"]
         C --> O[Conversation Context & Rolling Summary]
-    
-		N --> P[Add Turn to HistoryManager]
-		
-		P --> Q{Window Exceeds 6 Turns?}
 
-		Q -- Yes --> R[LLM Summarization Model]
-		R --> S[Update Rolling Summary]
-		S --> O
-	end 
+        N --> P[Add Turn to HistoryManager]
+
+        P --> Q{Window Exceeds 6 Turns?}
+
+        Q -- Yes --> R[LLM Summarization Model]
+        R --> S[Update Rolling Summary]
+        S --> O
+    end
+
     Q -- No --> O
 ```
  
