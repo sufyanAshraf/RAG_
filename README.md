@@ -94,7 +94,6 @@ flowchart TD
 
     subgraph QUERY["Unified Query Processing"]
         C --> F[History-Aware Retrieval Query]
-        QP --> D
         D --> E[Hybrid Search Filter]
     end
 
