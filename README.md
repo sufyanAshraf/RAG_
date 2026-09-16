@@ -28,20 +28,20 @@ Example questions:
 - Merges and deduplicates candidates by record ID, then reranks the combined set with Pinecone's `bge-reranker-v2-m3` model.
 - Returns up to five reranked records to the answer-generation prompt. This combines semantic matches with exact terms such as city names, services, and restaurant dishes.
 
-### Natural-language query understanding
+### Unified query processing
 
-- Uses Groq to convert a natural-language request into a structured JSON filter.
+- Uses a single Groq call via `QueryProcessor` to combine safety checking, category detection, and filter extraction.
 - Recognizes the categories `hotel`, `spa`, and `restaurant`.
-- Extracts category, name, city, region, rating, distance, and requested services.
+- Extracts category, name, city, region, rating, distance, and requested services in one structured JSON response.
 - Maps user terms to known services such as `Swimming Pool`, `Hot Stone Massage`, `Biryani`, and `Chocolate Cake`.
 - Applies the generated filters to Pinecone metadata search.
+- Reduces the old two-call pattern to one LLM invocation: one call for guardrails + parsing instead of separate guardrail and query-creator calls.
 
-### Query guardrails
+### Query guardrails (legacy / obsolete)
 
-- Runs a pre-retrieval safety and scope check on every user query.
-- Blocks off-topic, prompt-injection, unsafe-content, and PII requests before Pinecone search.
-- Returns a brief refusal message when the query is outside the supported business-search scope.
-- Uses a fail-closed policy for clear violations and a fail-open fallback for transient model or JSON parsing issues.
+- The previous standalone guardrail module and query builder are now superseded by the unified `QueryProcessor`.
+- The deprecated flow is retained only for reference and migration; active request handling now uses the combined parser/guardrail logic.
+- Clear violations still result in immediate refusal before retrieval, but the decision is made inside the same model call as the structured filter generation.
 
 ### Conversation awareness
 
@@ -85,15 +85,17 @@ Conversation turns are currently maintained by the server-side `HistoryManager`.
 ```mermaid
 flowchart TD
 
-    A[User Query] --> QG[Query Guardrail]
-    QG -- Blocked --> BR[Refusal Response]
-    QG -- Allowed --> B[FastAPI]
+    A[User Query] --> B[FastAPI]
     B --> C[HistoryManager]
+    B --> QP[QueryProcessor]
 
-    subgraph QUERY["Query Processing"]
-        C --> D[LLM Query Parser]
-        D --> E[Structured Pinecone Filters]
+    QP -- Blocked --> BR[Refusal Response]
+    QP -- Allowed --> D[Structured Pinecone Filter]
+
+    subgraph QUERY["Unified Query Processing"]
         C --> F[History-Aware Retrieval Query]
+        QP --> D
+        D --> E[Hybrid Search Filter]
     end
 
     subgraph RETRIEVAL["Hybrid Retrieval"]
@@ -129,6 +131,9 @@ flowchart TD
 
     Q -- No --> O
 ```
+
+> The old standalone `guardrails.py` and `query_creator.py` flow is obsolete. Active routing now uses a single `QueryProcessor` LLM call that performs both policy enforcement and structured filter extraction.
+
  
 ## Technology stack
 
@@ -150,13 +155,15 @@ app/
 	dataBase.py          Pinecone connection, index setup, upsert, and search
 	eval.py              Evaluation module placeholder
 	evalData.py          Evaluation query and reference data
+	guardrails.py        Legacy guardrail implementation (obsolete)
 	history_manager.py   Recent conversation window and rolling summary
 	logger.py            Application logging
 	main.py              FastAPI application and request orchestration
 	models.py            Groq model wrapper
 	prepareData.py       Source-record transformation for Pinecone
 	prompt.py            Context and answer prompt construction
-	query_creator.py     LLM query parsing and metadata filter creation
+	query_creator.py     Legacy query parser (obsolete)
+	queryProcessor.py    Unified guardrail + query parsing LLM processor
 	readData.py          Local data loading
 
 data/
