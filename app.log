@@ -1237,3 +1237,77 @@
         
 2026-09-15 20:41:55,787 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
 2026-09-15 20:41:55,790 | INFO | root | main.py | chat | 39 | Successfull response
+2026-09-15 21:44:13,303 | INFO | root | appInitlize.py | read_api_key_from_config | 15 | Reading API key from config file
+2026-09-15 21:44:14,163 | INFO | root | dataBase.py | __init__ | 30 | Pinecone Successfully connected
+2026-09-15 21:44:14,206 | INFO | pinecone.client.indexes | indexes.py | describe | 231 | Describing index 'rag-hotel'
+2026-09-15 21:44:15,385 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel "HTTP/1.1 200 OK"
+2026-09-15 21:44:15,387 | INFO | root | dataBase.py | create_index | 72 | Index already exist
+2026-09-15 21:44:15,387 | INFO | pinecone.client.indexes | indexes.py | describe | 231 | Describing index 'rag-hotel-fts'
+2026-09-15 21:44:16,219 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel-fts "HTTP/1.1 200 OK"
+2026-09-15 21:44:16,220 | INFO | root | dataBase.py | create_fts_index | 106 | FTS index already exist
+2026-09-15 21:44:16,429 | INFO | pinecone.index | __init__.py | __init__ | 195 | Index client created for host https://rag-hotel-esaxznd.svc.aped-4627-b74a.pinecone.io
+2026-09-15 21:44:16,615 | INFO | pinecone.index | __init__.py | __init__ | 195 | Index client created for host https://rag-hotel-fts-esaxznd.svc.aped-4627-b74a.pinecone.io
+2026-09-15 21:44:36,270 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 21:44:36,287 | INFO | pinecone.index | __init__.py | search | 1490 | Searching namespace 'services-providers' with top_k=5
+2026-09-15 21:44:37,900 | INFO | pinecone.client.documents | documents.py | search | 364 | Searching documents in namespace 'services-providers' with top_k=5
+2026-09-15 21:44:39,176 | INFO | pinecone.client.inference | inference.py | rerank | 449 | Reranking 5 documents with model 'bge-reranker-v2-m3'
+2026-09-15 21:44:40,135 | INFO | root | main.py | chat | 23 | Successfull query database
+2026-09-15 21:44:40,663 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 21:44:40,664 | INFO | root | main.py | chat | 39 | Successfull response
+2026-09-15 21:45:20,684 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 21:45:20,686 | INFO | pinecone.index | __init__.py | search | 1490 | Searching namespace 'services-providers' with top_k=5
+2026-09-15 21:45:22,534 | INFO | pinecone.client.documents | documents.py | search | 364 | Searching documents in namespace 'services-providers' with top_k=5
+2026-09-15 21:45:23,554 | INFO | pinecone.client.inference | inference.py | rerank | 449 | Reranking 7 documents with model 'bge-reranker-v2-m3'
+2026-09-15 21:45:24,516 | INFO | root | main.py | chat | 23 | Successfull query database
+2026-09-15 21:45:24,846 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-15 21:45:24,848 | INFO | root | main.py | chat | 39 | Successfull response
+2026-09-16 20:05:58,865 | INFO | root | appInitlize.py | read_api_key_from_config | 18 | Reading API key from config file
+2026-09-16 20:05:59,938 | INFO | root | dataBase.py | __init__ | 30 | Pinecone Successfully connected
+2026-09-16 20:06:00,032 | INFO | pinecone.client.indexes | indexes.py | describe | 231 | Describing index 'rag-hotel'
+2026-09-16 20:06:01,181 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel "HTTP/1.1 200 OK"
+2026-09-16 20:06:01,185 | INFO | root | dataBase.py | create_index | 72 | Index already exist
+2026-09-16 20:06:01,186 | INFO | pinecone.client.indexes | indexes.py | describe | 231 | Describing index 'rag-hotel-fts'
+2026-09-16 20:06:01,941 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel-fts "HTTP/1.1 200 OK"
+2026-09-16 20:06:01,942 | INFO | root | dataBase.py | create_fts_index | 106 | FTS index already exist
+2026-09-16 20:06:02,244 | INFO | pinecone.index | __init__.py | __init__ | 195 | Index client created for host https://rag-hotel-esaxznd.svc.aped-4627-b74a.pinecone.io
+2026-09-16 20:06:02,503 | INFO | pinecone.index | __init__.py | __init__ | 195 | Index client created for host https://rag-hotel-fts-esaxznd.svc.aped-4627-b74a.pinecone.io
+2026-09-16 20:06:39,865 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-16 20:06:41,927 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-16 20:06:41,929 | INFO | pinecone.index | __init__.py | search | 1490 | Searching namespace 'services-providers' with top_k=5
+2026-09-16 20:06:43,698 | INFO | pinecone.client.documents | documents.py | search | 364 | Searching documents in namespace 'services-providers' with top_k=5
+2026-09-16 20:06:47,678 | INFO | pinecone.client.inference | inference.py | rerank | 449 | Reranking 4 documents with model 'bge-reranker-v2-m3'
+2026-09-16 20:06:48,863 | INFO | root | main.py | chat | 28 | Successfull query database
+2026-09-16 20:06:49,410 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-16 20:06:49,418 | INFO | root | main.py | chat | 44 | Successfull response
+2026-09-16 20:07:32,157 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-16 20:07:32,160 | INFO | root | guardrails.py | check | 57 | Guardrail blocked query. category=off_topic reason=The query asks for a general knowledge fact, not about hotels, spas, or restaurants.
+2026-09-16 20:07:32,160 | INFO | root | appInitlize.py | guardrails_query | 60 | Query blocked by guardrail: category=off_topic reason=The query asks for a general knowledge fact, not about hotels, spas, or restaurants.
+2026-09-16 20:07:56,243 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-16 20:07:56,245 | INFO | root | guardrails.py | check | 57 | Guardrail blocked query. category=off_topic reason=Asks for general knowledge, not about hotels, spas, or restaurants.
+2026-09-16 20:07:56,245 | INFO | root | appInitlize.py | guardrails_query | 60 | Query blocked by guardrail: category=off_topic reason=Asks for general knowledge, not about hotels, spas, or restaurants.
+2026-09-16 20:08:58,870 | INFO | root | appInitlize.py | read_api_key_from_config | 18 | Reading API key from config file
+2026-09-16 20:08:59,728 | INFO | root | dataBase.py | __init__ | 30 | Pinecone Successfully connected
+2026-09-16 20:08:59,775 | INFO | pinecone.client.indexes | indexes.py | describe | 231 | Describing index 'rag-hotel'
+2026-09-16 20:09:01,409 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel "HTTP/1.1 200 OK"
+2026-09-16 20:09:02,992 | INFO | root | dataBase.py | create_index | 72 | Index already exist
+2026-09-16 20:09:02,993 | INFO | pinecone.client.indexes | indexes.py | describe | 231 | Describing index 'rag-hotel-fts'
+2026-09-16 20:09:03,961 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel-fts "HTTP/1.1 200 OK"
+2026-09-16 20:09:03,961 | INFO | root | dataBase.py | create_fts_index | 106 | FTS index already exist
+2026-09-16 20:09:04,219 | INFO | pinecone.index | __init__.py | __init__ | 195 | Index client created for host https://rag-hotel-esaxznd.svc.aped-4627-b74a.pinecone.io
+2026-09-16 20:09:04,463 | INFO | pinecone.index | __init__.py | __init__ | 195 | Index client created for host https://rag-hotel-fts-esaxznd.svc.aped-4627-b74a.pinecone.io
+2026-09-16 20:09:22,539 | INFO | root | appInitlize.py | read_api_key_from_config | 18 | Reading API key from config file
+2026-09-16 20:09:23,507 | INFO | root | dataBase.py | __init__ | 30 | Pinecone Successfully connected
+2026-09-16 20:09:23,555 | INFO | pinecone.client.indexes | indexes.py | describe | 231 | Describing index 'rag-hotel'
+2026-09-16 20:09:24,873 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel "HTTP/1.1 200 OK"
+2026-09-16 20:09:24,876 | INFO | root | dataBase.py | create_index | 72 | Index already exist
+2026-09-16 20:09:24,876 | INFO | pinecone.client.indexes | indexes.py | describe | 231 | Describing index 'rag-hotel-fts'
+2026-09-16 20:09:25,254 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: GET https://api.pinecone.io/indexes/rag-hotel-fts "HTTP/1.1 200 OK"
+2026-09-16 20:09:25,255 | INFO | root | dataBase.py | create_fts_index | 106 | FTS index already exist
+2026-09-16 20:09:25,535 | INFO | pinecone.index | __init__.py | __init__ | 195 | Index client created for host https://rag-hotel-esaxznd.svc.aped-4627-b74a.pinecone.io
+2026-09-16 20:09:25,800 | INFO | pinecone.index | __init__.py | __init__ | 195 | Index client created for host https://rag-hotel-fts-esaxznd.svc.aped-4627-b74a.pinecone.io
+2026-09-16 20:09:31,004 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-16 20:09:31,019 | INFO | root | guardrails.py | check | 57 | Guardrail blocked query. category=off_topic reason=Question is not about hotels, spas, or restaurants.
+2026-09-16 20:09:31,020 | INFO | root | appInitlize.py | guardrails_query | 60 | Query blocked by guardrail: category=off_topic reason=Question is not about hotels, spas, or restaurants.
+2026-09-16 20:09:45,943 | INFO | httpx | _client.py | _send_single_request | 1025 | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-16 20:09:45,947 | INFO | root | guardrails.py | check | 57 | Guardrail blocked query. category=off_topic reason=The query asks about general knowledge, not a hotel, spa, or restaurant.
+2026-09-16 20:09:45,947 | INFO | root | appInitlize.py | guardrails_query | 60 | Query blocked by guardrail: category=off_topic reason=The query asks about general knowledge, not a hotel, spa, or restaurant.

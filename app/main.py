@@ -5,9 +5,14 @@ app = FastAPI(title="RAG API", version="0.1.0")
 db, model =initlize_db_and_llm()
 history_manager = HistoryManager(model, window_size=6)  # session wiring comes later
 
+
 @app.post("/", response_model=chatResponse)
-async def chat(request: chatRequest) -> chatResponse:
+async def chat(request: chatRequest) -> chatResponse:   
     query = request.query
+    result, msg = guardrails_query(model , query) 
+    if result:
+        return chatResponse(response=msg)
+
     retrieval_query = build_retrieval_query(query, history_manager)
     
     # create filter

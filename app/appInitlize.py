@@ -9,6 +9,9 @@ from .dataBase import dataBase
 from .prompt import getPrompt
 from .query_creator import queryCreator
 from .history_manager import HistoryManager
+from .guardrails import QueryGuardrail
+
+guardrail = QueryGuardrail()
 
 def read_api_key_from_config() -> str:
     """Read the API key from the config.ini file."""
@@ -49,3 +52,15 @@ def initlize_db_and_llm():
 
 def build_retrieval_query(query, history_manager: HistoryManager):
     return history_manager.get_retrieval_query(query)
+
+def guardrails_query(model , query): 
+
+    guard_result = guardrail.check(model, query)
+    if not guard_result["allowed"]:
+        logger.info(
+            f"Query blocked by guardrail: category={guard_result['category']} "
+            f"reason={guard_result['reason']}"
+        )
+        return True , guard_result["message"]
+
+    return False, None

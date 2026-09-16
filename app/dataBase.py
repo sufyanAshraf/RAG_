@@ -131,7 +131,8 @@ class dataBase:
             
 
     def dense_search(self, query, filter, top_k):
-
+        """ search for  
+        """
         results = self.index.search(
             namespace=self.namespace,
             query={
