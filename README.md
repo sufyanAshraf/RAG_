@@ -108,7 +108,7 @@ flowchart TD
         J --> K[Retrieved Business Context]
     end
 
-    K --> L[Grounded Answer Prompt]
+    K --> L[Grounded Prompt]
     O --> L
 
     subgraph GENERATION["Answer Generation"]
