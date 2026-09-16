@@ -132,6 +132,67 @@ flowchart TD
     Q -- No --> O
 ```
 
+```mermaid
+flowchart TD
+
+    A[User Query] --> B[FastAPI]
+
+    B --> C[HistoryManager]
+    B --> QP[QueryProcessor]
+
+    subgraph QUERY["Unified Query Processing"]
+
+        QP --> V{Query Allowed?}
+
+        V -- No --> BR[Refusal Response]
+
+        V -- Yes --> D[Structured Metadata Filter]
+
+        C --> F[History-Aware Retrieval Query]
+
+    end
+
+    subgraph RETRIEVAL["Hybrid Retrieval"]
+
+        F --> G[Dense Vector Search]
+        F --> H[BM25 Full-Text Search]
+
+        D --> G
+        D --> H
+
+        G --> I[Merge & Deduplicate]
+        H --> I
+
+        I --> J[Cross-Encoder Reranking]
+
+        J --> K[Retrieved Business Context]
+
+    end
+
+    C --> O[Conversation Context + Rolling Summary]
+
+    K --> L[Grounded Answer Prompt]
+    O --> L
+
+    subgraph GENERATION["Answer Generation"]
+
+        L --> M[LLM Answer Model]
+        M --> N[Response]
+
+    end
+
+    N --> P[Add Query + Response to HistoryManager]
+
+    P --> Q{Window Limit Exceeded?}
+
+    Q -- No --> O
+
+    Q -- Yes --> R[LLM Summarization Model]
+    R --> S[Update Rolling Summary]
+    S --> O
+
+```
+
 > The old standalone `guardrails.py` and `query_creator.py` flow is obsolete. Active routing now uses a single `QueryProcessor` LLM call that performs both policy enforcement and structured filter extraction.
 
  
