@@ -4,20 +4,29 @@ from .appInitlize import*
 app = FastAPI(title="RAG API", version="0.1.0") 
 db, model =initlize_db_and_llm()
 history_manager = HistoryManager(model, window_size=6)  # session wiring comes later
-
+processor = QueryProcessor()
 
 @app.post("/", response_model=chatResponse)
 async def chat(request: chatRequest) -> chatResponse:   
     query = request.query
-    result, msg = guardrails_query(model , query) 
-    if result:
-        return chatResponse(response=msg)
-
     retrieval_query = build_retrieval_query(query, history_manager)
+    result = processor.process(model, retrieval_query)
+
+    if not result["allowed"]:
+        return chatResponse(response=result["message"])
+
+    filter = result["filter"]
+
+
+    # result, msg = guardrails_query(model , query) 
+    # if result:
+    #     return chatResponse(response=msg)
+
+    # retrieval_query = build_retrieval_query(query, history_manager)
     
-    # create filter
-    filter_obj = queryCreator()
-    filter = filter_obj.create_query(model, retrieval_query)
+    # # create filter
+    # filter_obj = queryCreator()
+    # filter = filter_obj.create_query(model, retrieval_query)
 
     try:
         results = db.hybrid_search(retrieval_query, filter)
@@ -26,7 +35,10 @@ async def chat(request: chatRequest) -> chatResponse:
         raise RuntimeError(f"Pinecone API failed: {e}")
  
     logger.info("Successfull query database") 
-     
+
+    if not results:
+        return chatResponse(response="Sorry we are unable to find anything related to your query")
+        
     # create prompt
     full_prompt = getPrompt(query, results, history_manager.get_context())
 

@@ -10,6 +10,7 @@ from .prompt import getPrompt
 from .query_creator import queryCreator
 from .history_manager import HistoryManager
 from .guardrails import QueryGuardrail
+from .queryProcessor import QueryProcessor
 
 guardrail = QueryGuardrail()
 
