@@ -4,8 +4,7 @@ A Retrieval-Augmented Generation API that lets hotel staff answer guest question
 
 > **Why this exists:** A similar system was built for a client, a hotel chain that wanted front-desk and concierge staff to instantly answer questions like *"where's the nearest restaurant that serves burgers?"* instead of manually searching places and reading reviews, and comparing places for guests to recommend. This project reimplements that concierge-assistant pattern on a public dataset (hotels, spas, and restaurants in Finland) as a portfolio build.
 
-![Demo](https://github.com/sufyanAshraf/ingest_doc/raw/refs/heads/main/demo.gif)
-<!-- TODO: Record a short GIF/screen capture of a query hitting POST / (e.g. via /docs) and drop it in as demo.gif -->
+![Demo](https://github.com/sufyanAshraf/RAG_/blob/main/RAG_demo.gif)
 
 ## What it does
 
@@ -39,7 +38,7 @@ Example questions:
 
 ### Unified query processing
 
-- Uses a single Groq call via `QueryProcessor` to combine safety checking, category detection, and filter extraction.
+- Uses a single Groq call via `QueryProcessor` to combine guardrails, category detection, and filter extraction.
 - Recognizes the categories `hotel`, `spa`, and `restaurant`.
 - Extracts category, name, city, region, rating, distance, and requested services in one structured JSON response.
 - Maps user terms to known services such as `Swimming Pool`, `Hot Stone Massage`, `Biryani`, and `Chocolate Cake`.
@@ -236,6 +235,24 @@ Invoke-RestMethod `
 	-Method Post `
 	-ContentType "application/json" `
 	-Body '{"query":"Find a hotel in Helsinki with a pool"}'
+```
+
+## Run the Streamlit frontend
+
+Start the API first, then run the frontend from the repository root in a second terminal:
+
+```powershell
+streamlit run frontend/frontend.py
+```
+
+The frontend connects to `http://127.0.0.1:8000/` by default. It provides a chat interface and an optional city filter for hotels, spas, and restaurants in Finland.
+
+## Testing
+
+Run the test suite from the repository root:
+
+```powershell
+pytest
 ```
 
 ## Tests
