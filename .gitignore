@@ -30,3 +30,4 @@ htmlcov/
 
 # Generated project output
 docs_output.txt
+app.log
