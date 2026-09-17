@@ -206,6 +206,20 @@ pip install -r requirements.txt
 .\RAGENV\Scripts\python.exe -m uvicorn app.main:app --reload
 ```
 
+## Run with Docker
+
+Build the image from the repository root:
+
+```powershell
+docker build -t rag-pinecone .
+```
+
+Run the API with the local configuration mounted read-only:
+
+```powershell
+docker run --rm -p 8000:8000 -v "${PWD}\config.ini:/app/config.ini:ro" rag-pinecone
+```
+
 Open the interactive API documentation at:
 
 http://127.0.0.1:8000/docs
