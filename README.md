@@ -1,6 +1,15 @@
 # RAG Local Business Assistant
 
-A Retrieval-Augmented Generation API for discovering hotels, spas, and restaurants in Finland. The service combines structured local data, Pinecone search, LLM-generated metadata filters, and Groq response generation to answer natural-language questions with grounded business information.
+A Retrieval-Augmented Generation API that lets hotel staff answer guest questions about nearby restaurants, spas, and bars in natural language — grounded in real business data, with distance and ratings included in every answer.
+
+> **Why this exists:** A similar system was built for a client — a hotel chain that wanted front-desk and concierge staff to instantly answer questions like *"where's the nearest restaurant that serves burgers?"* instead of manually searching review sites. This project reimplements that concierge-assistant pattern on a public dataset (hotels, spas, and restaurants in Finland) as a learning and portfolio build.
+
+![Demo](./demo.gif)
+<!-- TODO: Record a short GIF/screen capture of a query hitting POST / (e.g. via /docs) and drop it in as demo.gif -->
+
+## What it does
+
+A guest asks the front desk: *"Is there a burger place nearby?"* Staff type the question into the assistant and get back a grounded, natural-language answer — which restaurant, how far it is, and its rating — pulled from real business records instead of a generic LLM guess.
 
 Example questions:
 
@@ -13,9 +22,9 @@ Example questions:
 ### Retrieval-Augmented Generation
 
 - Loads hotel, massage, and restaurant records from the `data/` directory.
-- Converts records into Pinecone-compatible records with searchable text and metadata.
+- Converts records into Pinecone-compatible records with searchable text and metadata (including distance and rating).
 - Creates or connects to a Pinecone index named `rag-hotel`.
-- Uses Pinecone hosted `llama-text-embed-v2` embeddings through the integrated model index API.
+- Uses Pinecone-hosted `llama-text-embed-v2` embeddings through the integrated model index API.
 - Retrieves the five most relevant records from the `services-providers` namespace with hybrid search.
 - Builds a grounded answer prompt from retrieved business context.
 
@@ -26,7 +35,7 @@ Example questions:
 - Upserts every prepared record into both indexes in the `services-providers` namespace.
 - Applies the same LLM-generated metadata filter to both dense and BM25 searches.
 - Merges and deduplicates candidates by record ID, then reranks the combined set with Pinecone's `bge-reranker-v2-m3` model.
-- Returns up to five reranked records to the answer-generation prompt. This combines semantic matches with exact terms such as city names, services, and restaurant dishes.
+- Returns up to five reranked records to the answer-generation prompt, combining semantic matches with exact terms such as city names, services, and dishes.
 
 ### Unified query processing
 
@@ -35,24 +44,23 @@ Example questions:
 - Extracts category, name, city, region, rating, distance, and requested services in one structured JSON response.
 - Maps user terms to known services such as `Swimming Pool`, `Hot Stone Massage`, `Biryani`, and `Chocolate Cake`.
 - Applies the generated filters to Pinecone metadata search.
-- Reduces the old two-call pattern to one LLM invocation: one call for guardrails + parsing instead of separate guardrail and query-creator calls.
+- Reduces the old two-call pattern to one LLM invocation — a single call for guardrails and parsing instead of two separate calls.
 
-### Query guardrails (legacy / obsolete)
+### Query guardrails
 
-- The previous standalone guardrail module and query builder are now superseded by the unified `QueryProcessor`.
-- The deprecated flow is retained only for reference and migration; active request handling now uses the combined parser/guardrail logic.
-- Clear violations still result in immediate refusal before retrieval, but the decision is made inside the same model call as the structured filter generation.
+- Clear policy violations are refused immediately, before retrieval runs.
+- The refusal decision is made inside the same model call that produces the structured filter, rather than a separate guardrail pass.
+- *(A previous standalone guardrail module and query builder have been superseded by this unified `QueryProcessor` and are kept in the codebase only for reference.)*
 
 ### Conversation awareness
 
-- Stores recent query and response pairs in a `HistoryManager`.
+- Stores recent query/response pairs in a `HistoryManager`.
 - Keeps a sliding window of recent conversation turns.
-- Uses recent conversation when building retrieval queries and answer prompts.
+- Uses recent conversation when building retrieval queries and answer prompts — so a follow-up like *"what about one with outdoor seating?"* still resolves correctly.
 - Folds turns that leave the window into an LLM-generated rolling summary.
 - Preserves user preferences, locations, requested services, selected places, and unresolved questions in the summary.
 
-
-### API endpoints
+## API endpoints
 
 | Method | Path | Description |
 | --- | --- | --- |
@@ -66,7 +74,7 @@ Send a natural-language query to `POST /`:
 
 ```json
 {
-	"query": "Find a hotel in Helsinki with a pool"
+  "query": "Find a hotel in Helsinki with a pool"
 }
 ```
 
@@ -74,7 +82,7 @@ Response:
 
 ```json
 {
-	"response": "..."
+  "response": "..."
 }
 ```
 
@@ -131,20 +139,16 @@ flowchart TD
     Q -- No --> O
 ```
 
-> The old standalone `guardrails.py` and `query_creator.py` flow is obsolete. Active routing now uses a single `QueryProcessor` LLM call that performs both policy enforcement and structured filter extraction.
-
- 
 ## Technology stack
 
 - Python
 - FastAPI
 - Pydantic
 - Uvicorn
-- Pinecone
 - Pinecone (dense vector search, BM25 full-text search, and reranking)
 - Groq (LLM)
 - LangChain Groq integration
-- Pytest 
+- Pytest
 
 ## Project structure
 
@@ -247,4 +251,3 @@ The tests cover the database, model wrapper, and API behavior. Conversation-spec
 ## Project status
 
 This is a learning and portfolio project focused on RAG pipeline design, vector search, prompt engineering, LLM integration, and evaluation experiments. It is not currently intended as a production multi-user service.
-
