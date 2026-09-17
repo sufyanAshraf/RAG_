@@ -4,7 +4,7 @@ A Retrieval-Augmented Generation API that lets hotel staff answer guest question
 
 > **Why this exists:** A similar system was built for a client, a hotel chain that wanted front-desk and concierge staff to instantly answer questions like *"where's the nearest restaurant that serves burgers?"* instead of manually searching places and reading reviews, and comparing places for guests to recommend. This project reimplements that concierge-assistant pattern on a public dataset (hotels, spas, and restaurants in Finland) as a portfolio build.
 
-![Demo]([./demo.gif](https://github.com/sufyanAshraf/ingest_doc/raw/refs/heads/main/demo.gif))
+![Demo](https://github.com/sufyanAshraf/ingest_doc/raw/refs/heads/main/demo.gif)
 <!-- TODO: Record a short GIF/screen capture of a query hitting POST / (e.g. via /docs) and drop it in as demo.gif -->
 
 ## What it does
