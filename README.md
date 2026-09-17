@@ -1,15 +1,15 @@
 # RAG Local Business Assistant
 
-A Retrieval-Augmented Generation API that lets hotel staff answer guest questions about nearby restaurants, spas, and bars in natural language — grounded in real business data, with distance and ratings included in every answer.
+A Retrieval-Augmented Generation API that lets hotel staff answer guest questions about nearby restaurants, spas, and bars in natural language, grounded in real business data.
 
-> **Why this exists:** A similar system was built for a client — a hotel chain that wanted front-desk and concierge staff to instantly answer questions like *"where's the nearest restaurant that serves burgers?"* instead of manually searching review sites. This project reimplements that concierge-assistant pattern on a public dataset (hotels, spas, and restaurants in Finland) as a learning and portfolio build.
+> **Why this exists:** A similar system was built for a client, a hotel chain that wanted front-desk and concierge staff to instantly answer questions like *"where's the nearest restaurant that serves burgers?"* instead of manually searching places and reading reviews, and comparing places for guests to recommend. This project reimplements that concierge-assistant pattern on a public dataset (hotels, spas, and restaurants in Finland) as a portfolio build.
 
 ![Demo](./demo.gif)
 <!-- TODO: Record a short GIF/screen capture of a query hitting POST / (e.g. via /docs) and drop it in as demo.gif -->
 
 ## What it does
 
-A guest asks the front desk: *"Is there a burger place nearby?"* Staff type the question into the assistant and get back a grounded, natural-language answer — which restaurant, how far it is, and its rating — pulled from real business records instead of a generic LLM guess.
+A guest asks the front desk: *"Is there a burger place nearby?"* Staff type the question into the assistant and get back a grounded, natural-language answer: which restaurant, how far it is, its rating, and its services. Pulled from real business records instead of a generic LLM guess.
 
 Example questions:
 
@@ -143,11 +143,11 @@ flowchart TD
 
 - Python
 - FastAPI
+- Pinecone (dense vector search, BM25 full-text search, and reranking)
+- LangChain
+- Groq (LLM)
 - Pydantic
 - Uvicorn
-- Pinecone (dense vector search, BM25 full-text search, and reranking)
-- Groq (LLM)
-- LangChain Groq integration
 - Pytest
 
 ## Project structure
