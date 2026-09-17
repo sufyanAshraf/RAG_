@@ -146,6 +146,14 @@ st.markdown(
     .stBottom > div {
         background-color: #262624 !important;
     } 
+
+    # .stBottom [class*="st-emotion-cache"] {
+    #     background-color: #262624 !important;
+    # }
+
+    [data-testid="stBottomBlockContainer"] {
+        padding-bottom: 15px !important;
+    }
     
     </style>
     """,
@@ -173,7 +181,7 @@ with city_col:
     )
 
 with avatar_col:
-    st.markdown('<div class="avatar">S</div>', unsafe_allow_html=True)
+    st.markdown('<div class="avatar" >S</div>', unsafe_allow_html=True)
 
 st.markdown("<div style='height:8px'></div>", unsafe_allow_html=True)
 
