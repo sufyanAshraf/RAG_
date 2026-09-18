@@ -65,7 +65,7 @@ Example questions:
 | --- | --- | --- |
 | `POST` | `/` | Search the local business data and generate an answer. |
 | `GET` | `/health` | Return the service health status. |
-| `GET` | `/eval` | Evaluation endpoint placeholder. |
+| `GET` | `/eval` | Run the LangSmith RAG evaluation. |
 
 ## Request and response
 
@@ -155,7 +155,7 @@ flowchart TD
 app/
 	appInitlize.py       Configuration, Pydantic models, and service initialization
 	dataBase.py          Pinecone connection, index setup, upsert, and search
-	eval.py              Evaluation module placeholder
+	eval.py              LangSmith evaluation metrics and runner
 	evalData.py          Evaluation query and reference data
 	guardrails.py        Legacy guardrail implementation (obsolete)
 	history_manager.py   Recent conversation window and rolling summary
@@ -188,6 +188,7 @@ Create a local `config.ini` file with the API keys expected by the application:
 [KEYS]
 groq_api_key = your-groq-api-key
 pinecone_api_key = your-pinecone-api-key
+langsmith_api_key = your-langsmith-api-key
 ```
 
 Do not commit credentials. Rotate any key that has been exposed in source control or logs.
@@ -208,6 +209,31 @@ pip install -r requirements.txt
 ```powershell
 .\RAGENV\Scripts\python.exe -m uvicorn app.main:app --reload
 ```
+
+## Run the evaluation
+
+The evaluation uses LangSmith to run the RAG pipeline against the examples in
+`app/evalData.py`. Each example contains a user query and a reference answer.
+The evaluator creates or reuses the `RAG_Eval_Dataset2` dataset and records an
+experiment in LangSmith.
+
+It reports four LLM-judged metrics, each scored from `0.0` to `1.0`:
+
+- **Context precision**: whether relevant retrieved records are ranked near the top.
+- **Context recall**: whether the retrieved records contain the information needed for the reference answer.
+- **Faithfulness**: whether the generated answer is supported by the retrieved records.
+- **Answer relevancy**: whether the answer directly addresses the user’s question.
+
+Start the API, then call the evaluation endpoint from a second PowerShell terminal:
+
+```powershell
+Invoke-RestMethod -Uri http://127.0.0.1:8000/eval -Method Get
+```
+
+The endpoint returns `{ "data": "ok" }` after the run completes. Open the
+corresponding project in LangSmith to inspect per-example scores and evaluator
+reasoning. Evaluation requires a valid `langsmith_api_key` in `config.ini` and
+uses the configured Groq and Pinecone credentials as well.
 
 ## Run with Docker
 
