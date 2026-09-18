@@ -194,6 +194,28 @@ langsmith_api_key = your-langsmith-api-key
 
 Do not commit credentials. Rotate any key that has been exposed in source control or logs.
 
+### LangSmith monitoring
+
+LangSmith is used to monitor the RAG evaluation runs. The application uses the
+`langsmith_api_key` from `config.ini` when the `/eval` endpoint starts an
+evaluation. The intended LangSmith project is `hotel_RAG`, where you can
+inspect experiment results and per-example evaluator scores.
+
+The configured monitoring values are:
+
+```text
+LANGSMITH_TRACING = True
+LANGSMITH_PROJECT = hotel_RAG
+```
+
+The current evaluation client uses the API key directly; configure the
+LangSmith project in the runtime environment if your LangSmith account does
+not use `hotel_RAG` as the default project.
+
+Start the API and call `GET /eval` to create or reuse the evaluation dataset
+and send the latest evaluation run to LangSmith. See [Run the evaluation](#run-the-evaluation)
+for the command and the metrics that are reported.
+
 ## Installation
 
 From the repository root:
