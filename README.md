@@ -145,6 +145,7 @@ flowchart TD
 - Pinecone (dense vector search, BM25 full-text search, and reranking)
 - LangChain
 - Groq (LLM)
+- LangSmith
 - Pydantic
 - Uvicorn
 - Pytest
