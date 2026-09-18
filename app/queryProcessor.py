@@ -8,6 +8,16 @@ class QueryProcessor:
 
     def __init__(self):
         self.categories = ["spa", "hotel", "restaurant"]
+        self.greetings = {
+            "hi",
+            "hello",
+            "hey",
+            "greetings",
+            "good morning",
+            "good afternoon",
+            "good evening",
+        }
+        self.welcome_message = "Welcome to Royal Hotel. How can I help you?"
 
         self.filter = [ 
             "name",
@@ -42,6 +52,15 @@ class QueryProcessor:
                 "reason": "Empty query.",
                 "category": "empty_query",
                 "message": self.refusal_message,
+                "filter": None,
+            }
+
+        if query.strip().casefold().rstrip("!?.") in self.greetings:
+            return {
+                "allowed": False,
+                "reason": None,
+                "category": "greeting",
+                "message": self.welcome_message,
                 "filter": None,
             }
 

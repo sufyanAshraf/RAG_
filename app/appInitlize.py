@@ -8,7 +8,7 @@ from .prepareData import data_prepration_for_embadddings
 from .dataBase import dataBase 
 from .prompt import getPrompt
 # from .query_creator import queryCreator
-from .history_manager import HistoryManager
+from .historyManager import HistoryManager
 # from .guardrails import QueryGuardrail
 from .queryProcessor import QueryProcessor
 
