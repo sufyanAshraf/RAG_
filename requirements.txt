@@ -6,3 +6,5 @@ langchain-groq==1.1.3
 pinecone
 streamlit
 requests
+# python-dotenv
+# langsmith
