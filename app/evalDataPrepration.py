@@ -10,40 +10,58 @@
 #     return ids, id_to_record
     
 
-# def retrieve(query,  model, index, ids, id_to_record, k=5):
-#     query_vector = np.array(model.embed_query(query)).astype("float32").reshape(1, -1)
-#     distances, indices = index.search(query_vector, k)
-#     retrieved_ids = [ids[i] for i in indices[0]]
-#     contexts = [id_to_record[rid]["metadata"]["content"] for rid in retrieved_ids]
+# def retrieve1(query, db, model, k=5): 
+#     # result = processor.process(model, query)
+#     # filter = result["filter"]
+#     # results = db.hybrid_search(query, filter)
+#     # full_prompt = getPrompt(query, results, "No previous conversation.")
+#     # response = model.invoke_model(
+#     #             full_prompt=full_prompt
+#     #         ) 
+#     # return response, results
+    
+#     results = db.search_db(query)
+#     contexts = []
+#     if "result" in results and "hits" in results["result"]:
+#         for hit in results["result"]["hits"]:
+#             contexts.append(hit["fields"]["chunk_text"])
 #     return contexts
 
-# def generate(query, contexts, gen_llm):
+# def generate(query, contexts,model):
 #     prompt = (
 #         "Answer the question using ONLY the context below. "
 #         "If the answer isn't in the context, say you don't know.\n\n"
 #         f"Context:\n{chr(10).join(contexts)}\n\nQuestion: {query}"
 #     )
-#     response = gen_llm.invoke(prompt) 
-     
+#     response = model.invoke(prompt)
 #     return response.content
-
  
-# def create_evaluation_dataset(model, index, gen_llm, embedding_records, k=5): 
-#     ids, id_to_record = indexing(embedding_records)  
- 
-#     dataset = []
+from .prompt import getPrompt 
 
-#     for item in eval_queries:
-#         query = item["query"]
-#         contexts = retrieve(query, model=model, index=index, ids=ids, id_to_record=id_to_record, k=k)
-#         response = generate(query, contexts,gen_llm)
+def create_context( results):
+    
+    hits = results["result"]["hits"]
 
-#         dataset.append({
-#             "user_input": query,
-#             "retrieved_contexts": contexts,
-#             "response": response,
-#             "reference": item["reference"],
-#         })
+    contexts = []
 
-#     evaluation_dataset =  EvaluationDataset.from_list(dataset)
-#     return evaluation_dataset
+    for hit in hits:
+        fields = hit.get("fields", {})
+
+        chunk_text = fields.get("chunk_text", "")
+
+        if chunk_text:
+            contexts.append(chunk_text)
+
+    return contexts
+
+def retrieve(query, db, model, processor): 
+    result = processor.process(model, query)
+
+    filter = result["filter"]
+    results = db.hybrid_search(query, filter)
+
+    full_prompt = getPrompt(query, results, "No previous conversation.")
+
+    response = model.invoke_model(full_prompt=full_prompt) 
+
+    return response, create_context(results) 

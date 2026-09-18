@@ -72,36 +72,31 @@ def health_check() -> dict[str, str]:
     logger.info("Health check requested")
     return {"status": "ok"}
  
- 
+from langchain_groq import ChatGroq
+from .eval import RAGEvaluator
+from .evalData import eval_queries
 @app.get("/eval")
 def quality_test(): 
-    # groq_api_key, huggingface_api_key = read_api_key_from_config()
+    groq_api_key, pinecone_api_key = read_api_key_from_config()
     
-    # model =  ChatGroq(groq_api_key=groq_api_key, model_name="openai/gpt-oss-safeguard-20b")
-    # # docs = read_documents_from_file()
-    # embeddings_model = EmbeddingsModel(local_model=True)
-    # embedder = embeddings_model.get_model()  
-    
-    # read_data = readData()
-    # data = read_data.readjson()
+    LLM_model =  ChatGroq(groq_api_key=groq_api_key, model_name="openai/gpt-oss-safeguard-20b")
 
-    # # Create embeddings for the data
-    # embedding_records, vectors = create_embeddings(data, embedder)
-
-    # # Store the vectors in the database
-    # db = dataBase()
-    # index = db.store_vectors(vectors)
-    
-    # # run evals
-    # evaluation_dataset = create_evaluation_dataset(embedder, index, model, embedding_records)
-    # result = evaluateWithRagas(evaluation_dataset, model, embedder)
+    config = configparser.ConfigParser()
+    config.read("config.ini")
+    key = config.get("KEYS", "langsmith_api_key") 
      
-    # logger.info("successfull")
-    # df = result.to_pandas()
-
-    # # data = df.to_dict(orient="records") 
-    
-    # logger.info(df)
-
+    evaluator = RAGEvaluator(eval_queries=eval_queries, 
+        model=LLM_model,
+        key= key,
+        db = db,
+        model_class = model,
+        processor = processor,
+        dataset_name="RAG_Eval_Dataset2",
+    )
+    results = evaluator.evaluate(
+        experiment_prefix="RAG_Eval_Langsmith_Native1",
+        max_concurrency=2,
+    )
+    print(results)
     return {"data": "ok"}
  
