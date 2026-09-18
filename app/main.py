@@ -80,13 +80,13 @@ from .eval import RAGEvaluator
 from .evalData import eval_queries
 @app.get("/eval")
 def quality_test(): 
-    groq_api_key, pinecone_api_key = read_api_key_from_config()
+    groq_api_key, pinecone_api_key, key = read_api_key_from_config()
     
     LLM_model =  ChatGroq(groq_api_key=groq_api_key, model_name="openai/gpt-oss-safeguard-20b")
      
     evaluator = RAGEvaluator(eval_queries=eval_queries, 
         model=LLM_model,
-        key = LANGSMITH_API_KEY,
+        key = key,
         db = db,
         model_class = model,
         processor = processor,

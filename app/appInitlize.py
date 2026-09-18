@@ -30,15 +30,11 @@ class chatResponse(BaseModel):
 class ConversationTurn(BaseModel):
     query: str
     response: str
- 
-LANGSMITH_API_KEY = None 
+  
 
 def initlize_db_and_llm():
 
     groq_api_key, pinecone_api_key, langsmith_api_key = read_api_key_from_config()
-
-    global LANGSMITH_API_KEY
-    LANGSMITH_API_KEY = langsmith_api_key
     
     model = GroqModel(groq_api_key)   
     
