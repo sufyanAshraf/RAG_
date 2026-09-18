@@ -169,6 +169,9 @@ app/
 	queryProcessor.py    Unified guardrail + query parsing LLM processor
 	readData.py          Local data loading
 
+frontend/
+	frontend.py
+
 data/
 	hotels.txt
 	massage.txt
