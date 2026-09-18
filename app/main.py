@@ -1,11 +1,14 @@
 from .appInitlize import* 
+from dotenv import load_dotenv
 
+load_dotenv()
 
 app = FastAPI(title="RAG API", version="0.1.0") 
-db, model =initlize_db_and_llm()
+db, model = initlize_db_and_llm()
 history_manager = HistoryManager(model, window_size=6)  # session wiring comes later
 processor = QueryProcessor()
 
+ 
 @app.post("/", response_model=chatResponse)
 async def chat(request: chatRequest) -> chatResponse:   
     query = request.query
@@ -80,14 +83,10 @@ def quality_test():
     groq_api_key, pinecone_api_key = read_api_key_from_config()
     
     LLM_model =  ChatGroq(groq_api_key=groq_api_key, model_name="openai/gpt-oss-safeguard-20b")
-
-    config = configparser.ConfigParser()
-    config.read("config.ini")
-    key = config.get("KEYS", "langsmith_api_key") 
      
     evaluator = RAGEvaluator(eval_queries=eval_queries, 
         model=LLM_model,
-        key= key,
+        key = LANGSMITH_API_KEY,
         db = db,
         model_class = model,
         processor = processor,

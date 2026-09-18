@@ -19,7 +19,7 @@ def read_api_key_from_config() -> str:
     logger.info("Reading API key from config file")
     config = configparser.ConfigParser()
     config.read("config.ini")
-    return config.get("KEYS", "groq_api_key") , config.get("KEYS", "pinecone_api_key")
+    return config.get("KEYS", "groq_api_key") , config.get("KEYS", "pinecone_api_key"),  config.get("KEYS", "langsmith_api_key")
 
 class chatRequest(BaseModel):
     query: str
@@ -30,10 +30,15 @@ class chatResponse(BaseModel):
 class ConversationTurn(BaseModel):
     query: str
     response: str
+ 
+LANGSMITH_API_KEY = None 
 
 def initlize_db_and_llm():
 
-    groq_api_key, pinecone_api_key = read_api_key_from_config()
+    groq_api_key, pinecone_api_key, langsmith_api_key = read_api_key_from_config()
+
+    global LANGSMITH_API_KEY
+    LANGSMITH_API_KEY = langsmith_api_key
     
     model = GroqModel(groq_api_key)   
     
