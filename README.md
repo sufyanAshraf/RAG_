@@ -235,6 +235,8 @@ corresponding project in LangSmith to inspect per-example scores and evaluator
 reasoning. Evaluation requires a valid `langsmith_api_key` in `config.ini` and
 uses the configured Groq and Pinecone credentials as well.
 
+![Evaluation results](eval.png)
+
 ## Run with Docker
 
 Build the image from the repository root:
