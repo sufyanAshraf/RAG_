@@ -301,13 +301,6 @@ streamlit run frontend/frontend.py
 
 The frontend connects to `http://127.0.0.1:8000/` by default. It provides a chat interface and an optional city filter for hotels, spas, and restaurants in Finland.
 
-## Testing
-
-Run the test suite from the repository root:
-
-```powershell
-pytest
-```
 
 ## Tests
 
